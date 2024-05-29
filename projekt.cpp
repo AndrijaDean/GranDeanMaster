@@ -51,16 +51,22 @@ int main()
     else if (izbor == 2)
     {
         int n = 3;
-        int polje[n][n] = {
-            {0, 1, 2},
-            {3, 4, 5},
-            {6, 7, 8},
-        };
+        int polje[n][n];
+        int vrijednost = 0;
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                polje[i][j] = vrijednost;
+                ++vrijednost;
+            }
+
+        }
 
         int rendom = time(0);
         srand(rendom);
-        int bombaR = rand() % 3;
-        int bombaC = rand() % 3;
+        int bombaR = rand() % n;
+        int bombaC = rand() % n;
         int bomba = polje[bombaR][bombaC];
         cout << bombaR << " " << bombaC << endl;
 
@@ -86,9 +92,20 @@ int main()
         {
             brPogodenih++;
         }
-        int brPogadanja = 0;
-        int pPogodenih[n * n];
-        pPogodenih[0] = pogadanjeR * 10 + pogadanjeC;
+
+        int praznoPolje[n][n];
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                polje[i][j] = 0;
+            }
+        }
+
+        if (praznoPolje[pogadanjeR][pogadanjeC] == 0)
+        {
+            praznoPolje[pogadanjeR][pogadanjeC] = 1;
+        }
 
         while (pogadanje != bomba)
         {
@@ -99,30 +116,19 @@ int main()
             cin >> pogadanjeC;
 
             pogadanje = polje[pogadanjeR][pogadanjeC];
-            brPogadanja++;
 
-            pPogodenih[brPogadanja] = pogadanjeR * 10 + pogadanjeC;
-
-           /* bool flag_ponavljanja = false;
-            for (int i = 0; i < (n * n - 1); i++)
+            if (praznoPolje[pogadanjeR][pogadanjeC] == 0)
             {
-                for (int j = 1; j < (n * n - 1); j++)
+                praznoPolje[pogadanjeR][pogadanjeC] = 1;
+                if (pogadanje != bomba)
                 {
-                    if (pPogodenih[i] == pPogodenih[j])
-                    {
-                        flag_ponavljanja = true;
-                    }
+                    brPogodenih++;
                 }
-            }*/
-
-            if (pogadanje != bomba)
-            {
-                brPogodenih++;
             }
-            /*if (brPogadanja == brPogodenih && flag_ponavljanja == true)
+            else
             {
-                cout << "Dva puta ste upisali isto polje! Ostvareni broj bodova je: " << " " << brPogodenih << endl;
-            }*/
+                cout << "Vec ste upisali ovo polje! :)" << endl;
+            }
 
             if (brPogodenih == n * n - 1)
             {
@@ -133,11 +139,6 @@ int main()
         if (pogadanje == bomba)
         {
             cout << "Bomba je pronađena!" << " " << brPogodenih << endl;
-        }
-        for (int i = 0; i < (n * n - 1); i++)
-        {
-
-            cout << "ponavljanje:)" << " " << pPogodenih[i] << endl;
         }
     }
     else
