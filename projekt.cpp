@@ -13,6 +13,7 @@ struct Igrac
     char imeIgraca[50];
     int bodoviIgraca;
 };
+
 bool cmpp(Igrac &a, Igrac &b)
 {
     return a.bodoviIgraca > b.bodoviIgraca;
@@ -85,6 +86,9 @@ int main()
         {
             brPogodenih++;
         }
+        int brPogadanja = 0;
+        int pPogodenih[n * n];
+        pPogodenih[0] = pogadanjeR * 10 + pogadanjeC;
 
         while (pogadanje != bomba)
         {
@@ -95,11 +99,31 @@ int main()
             cin >> pogadanjeC;
 
             pogadanje = polje[pogadanjeR][pogadanjeC];
+            brPogadanja++;
+
+            pPogodenih[brPogadanja] = pogadanjeR * 10 + pogadanjeC;
+
+           /* bool flag_ponavljanja = false;
+            for (int i = 0; i < (n * n - 1); i++)
+            {
+                for (int j = 1; j < (n * n - 1); j++)
+                {
+                    if (pPogodenih[i] == pPogodenih[j])
+                    {
+                        flag_ponavljanja = true;
+                    }
+                }
+            }*/
 
             if (pogadanje != bomba)
             {
                 brPogodenih++;
             }
+            /*if (brPogadanja == brPogodenih && flag_ponavljanja == true)
+            {
+                cout << "Dva puta ste upisali isto polje! Ostvareni broj bodova je: " << " " << brPogodenih << endl;
+            }*/
+
             if (brPogodenih == n * n - 1)
             {
                 cout << "Dobili ste maksimalan broj bodova! :)" << " " << brPogodenih << endl;
@@ -109,6 +133,11 @@ int main()
         if (pogadanje == bomba)
         {
             cout << "Bomba je pronađena!" << " " << brPogodenih << endl;
+        }
+        for (int i = 0; i < (n * n - 1); i++)
+        {
+
+            cout << "ponavljanje:)" << " " << pPogodenih[i] << endl;
         }
     }
     else
