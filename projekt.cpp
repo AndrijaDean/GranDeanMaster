@@ -11,8 +11,8 @@ using namespace std;
 void clear_screen()
 {
     printf(
-        "\033[2J"     // clear the screen
-        "\033[1;1H"); // move cursor home
+        "\033[2J"
+        "\033[1;1H");
 }
 
 struct Igrac
@@ -172,8 +172,6 @@ int main()
             cout << "Unjeli ste kordinate koje se ne nalaze u polju! :)" << endl;
         }
 
-
-
         while (pogadanje != bomba)
         {
             cout << "Bomba nije pronađena!" << endl;
@@ -234,8 +232,26 @@ int main()
             }
         }
     }
-    else
+
+    else if (izbor == 3)
     {
+        clear_screen();
+        cout << "                                            ░█▀▀░█░█░█▀█░█▀█" << endl;
+        cout << "                                            ░▀▀█░█▀█░█░█░█▀▀" << endl;
+        cout << "                                            ░▀▀▀░▀░▀░▀▀▀░▀░░" << endl;
+        cout << "----------------------------------------------------------------------------------------------------------" << endl;
+        cout << endl
+             << "░▀█░░░░     ░█▀█░█▀█░█░░░▀▀█░█▀▀    ░▀▀█░█░█░▀▀█" << endl;
+        cout << "░░█░░░░     ░█▀▀░█░█░█░░░░░█░█▀▀░   ░░▀▄░▄▀▄░░▀▄" << endl;
+        cout << "░▀▀▀░▀░     ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀    ░▀▀░░▀░▀░▀▀░" << endl;
+        cout << endl
+             << "░▀▀▄░░░     ░█▀█░█▀█░█░░░▀▀█░█▀▀    ░█▀▀░█░█░█▀▀" << endl;
+        cout << "░▄▀░░░░     ░█▀▀░█░█░█░░░░░█░█▀▀░   ░▀▀▄░▄▀▄░▀▀▄" << endl;
+        cout << "░▀▀▀░▀░     ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀    ░▀▀░░▀░▀░▀▀░" << endl;
+        cout << endl
+             << "░▀▀█░░░     ░█▀█░█▀█░█░░░▀▀█░█▀▀    ░▀▀█░█░█░▀▀█" << endl;
+        cout << "░░▀▄░░░     ░█▀▀░█░█░█░░░░░█░█▀▀░   ░▄▀░░▄▀▄░▄▀░" << endl;
+        cout << "░▀▀░░▀░     ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀    ░▀░░░▀░▀░▀░░" << endl;
     }
     return 0;
 }
