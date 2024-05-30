@@ -3,6 +3,9 @@
 #include <cstdlib>
 #include <ctime>
 
+#include <windows.h>
+#include <unistd.h>
+
 #include <fstream>
 #include <algorithm>
 
@@ -81,7 +84,7 @@ int main()
         else if (izbor == 1)
         {
             clear_screen();
-            int n{5};
+            int n{3};
             int polje[n][n];
             int vrijednost = 0;
             for (int i = 0; i < n; i++)
@@ -156,10 +159,7 @@ int main()
                         cout << "Bomba je pronađena!" << " " << brPogodenih << endl;
                     }
                 }
-                else
-                {
-                    cout << "Već ste upisali ovo polje! :)" << endl;
-                }
+                cout << endl;
                 for (int i = 0; i < n; i++)
                 {
                     for (int j = 0; j < n; j++)
@@ -213,6 +213,8 @@ int main()
                                     }
                                     cout << endl;
                                 }
+                                sleep(5);
+                                clear_screen();
                                 break;
                             }
                         }
@@ -221,25 +223,47 @@ int main()
                             praznoPolje[pogadanjeR][pogadanjeC] = 6;
                             clear_screen();
                             cout << "Bomba je pronađena!" << " " << brPogodenih << endl;
+                            for (int i = 0; i < n; i++)
+                            {
+                                for (int j = 0; j < n; j++)
+                                {
+                                    cout << praznoPolje[i][j] << "  ";
+                                }
+                                cout << endl;
+                            }
+                            sleep(5);
+                            clear_screen();
+                            break;
                         }
                     }
                     else
                     {
-                        cout << "Već ste upisali ovo polje! :)" << endl;
+                        clear_screen();
+                        cout << "Već ste upisali ovo polje! :)";
                     }
-                    for (int i = 0; i < n; i++)
-                    {
-                        for (int j = 0; j < n; j++)
+                    //if (praznoPolje[pogadanjeR][pogadanjeC] == 0 && pogadanjeR >= 0 && pogadanjeR < n && pogadanjeC >= 0 && pogadanjeC < n){
+                        cout<<endl;
+                        for (int i = 0; i < n; i++)
                         {
-                            cout << praznoPolje[i][j] << "  ";
+                            for (int j = 0; j < n; j++)
+                            {
+                                cout << praznoPolje[i][j] << "  ";
+                            }
+                            cout << endl;
                         }
-                        cout << endl;
-                    }
                 }
                 else
                 {
                     clear_screen();
                     cout << "Unjeli ste kordinate koje se ne nalaze u polju! :)" << endl;
+                    for (int i = 0; i < n; i++)
+                    {
+                        for (int j = 0; j < n; j++)
+                        {
+                            cout << praznoPolje[i][j] << "  "; //ispisuje polje nakon unosa kordinata koje se ne nalaze u polju
+                        }
+                        cout << endl;
+                    }
                 }
             }
         }
