@@ -8,6 +8,13 @@
 
 using namespace std;
 
+void clear_screen()
+{
+    printf(
+        "\033[2J"     // clear the screen
+        "\033[1;1H"); // move cursor home
+}
+
 struct Igrac
 {
     char imeIgraca[50];
@@ -21,10 +28,30 @@ bool cmpp(Igrac &a, Igrac &b)
 
 int main()
 {
+    cout << endl
+         << "                              _/  _/_/_/    _/_/_/      _/_/    _/      _/    _/_/    _/_/_/    _/_/_/  " << endl;
+    cout << "                             _/  _/    _/  _/    _/  _/    _/  _/_/    _/  _/    _/  _/    _/    _/     " << endl;
+    cout << "                            _/  _/_/_/    _/_/_/    _/    _/  _/  _/  _/  _/_/_/_/ /___/  _/    _/      " << endl;
+    cout << "                               _/        _/    _/  _/    _/  _/    _/_/  _/    _/  _/    _/    _/       " << endl;
+    cout << "                          _/  _/        _/    _/    _/_/    _/      _/  _/    _/  _/_/_/    _/_/_/      " << endl;
+    cout << endl
+         << "                              _/_/_/      _/_/    _/      _/  _/_/_/    _/    _/                        " << endl;
+    cout << "                             _/    _/  _/    _/  _/_/  _/_/  _/    _/  _/    _/                         " << endl;
+    cout << "                            _/_/_/    _/    _/  _/  _/  _/  _/_/_/    _/    _/                          " << endl;
+    cout << "                           _/    _/  _/    _/  _/      _/  _/    _/  _/    _/                           " << endl;
+    cout << "                          _/_/_/      _/_/    _/      _/  _/_/_/      _/_/                              " << endl
+         << endl;
+
+    cout << "------------------------------------------------------------------------------------------------------------" << endl;
+
+    cout << endl
+         << "     ░█▀█░█░░░█▀█░█░█      |      ░█░░░█▀▀░█▀█░█▀▄░█▀▀░█▀▄░█▀▄░█▀█░█▀█░█▀▄░█▀▄      |      ░█▀▀░█░█░█▀█░█▀█" << endl;
+    cout << "     ░█▀▀░█░░░█▀█░░█░      |      ░█░░░█▀▀░█▀█░█░█░█▀▀░█▀▄░█▀▄░█░█░█▀█░█▀▄░█░█      |      ░▀▀█░█▀█░█░█░█▀▀" << endl;
+    cout << "     ░▀░░░▀▀▀░▀░▀░░▀░      |      ░▀▀▀░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀░▀░▀▀░      |      ░▀▀▀░▀░▀░▀▀▀░▀░░" << endl;
+
     int izbor;
-    cout << "Unesite 1 ako želite vidjeti Leaderboard, unesite 2 ako želite zaigrati ili unesite 3 ako želite vidjeti shop.";
     cin >> izbor;
-    if (izbor == 1)
+    if (izbor == 2)
     {
         struct Igrac igraci[100];
         int brIgraca = 0;
@@ -48,21 +75,11 @@ int main()
         leaderboard1.write((char *)igraci, sizeof(Igrac) * (brIgraca + unosIgraca));
         leaderboard1.close();
     }
-    else if (izbor == 2)
+    else if (izbor == 1)
     {
-        int n = 7;
-        int polje[n][n]; /*= {
-            {0, 1, 2, 3, 4, 5, 6, 7, 8, 9},
-            {10, 11, 12, 13, 14, 15, 16, 17, 18, 19},
-            {20, 21, 22, 23, 24, 25, 26, 27, 28, 29},
-            {30, 31, 32, 33, 34, 35, 36, 37, 38, 39},
-            {40, 41, 42, 43, 44, 45, 46, 47, 48, 49},
-            {50, 51, 52, 53, 54, 55, 56, 57, 58, 59},
-            {60, 61, 62, 63, 64, 65, 66, 67, 68, 69},
-            {70, 71, 72, 73, 74, 75, 76, 77, 78, 79},
-            {80, 81, 82, 83, 84, 85, 86, 87, 88, 89},
-            {90, 91, 92, 93, 94, 95, 96, 97, 98, 99},
-        };*/
+        clear_screen();
+        int n{5};
+        int polje[n][n];
         int vrijednost = 0;
         for (int i = 0; i < n; i++)
         {
@@ -71,7 +88,6 @@ int main()
                 polje[i][j] = vrijednost;
                 ++vrijednost;
             }
-
         }
 
         int rendom = time(0);
@@ -81,13 +97,20 @@ int main()
         int bomba = polje[bombaR][bombaC];
         cout << bombaR << " " << bombaC << endl;
 
+        int praznoPolje[n][n];
         for (int i = 0; i < n; i++)
         {
             for (int j = 0; j < n; j++)
             {
-                cout << polje[i][j] << "\t";
+                praznoPolje[i][j] = 0;
             }
-            cout << endl;
+        }
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                cout << praznoPolje[i][j] << "  ";
+            }
             cout << endl;
         }
 
@@ -100,41 +123,56 @@ int main()
         int pogadanje = polje[pogadanjeR][pogadanjeC];
 
         int brPogodenih = 0;
+
         if (pogadanjeR >= 0 && pogadanjeR < n && pogadanjeC >= 0 && pogadanjeC < n)
         {
-            if (pogadanje != bomba)
+            if (praznoPolje[pogadanjeR][pogadanjeC] == 0)
             {
-                brPogodenih++;
+                praznoPolje[pogadanjeR][pogadanjeC] = 1;
+                if (pogadanje != bomba)
+                {
+                    brPogodenih++;
+                    clear_screen();
+                    if (brPogodenih == n * n - 1)
+                    {
+                        cout << "Dobili ste maksimalan broj bodova! :)" << " " << brPogodenih << endl;
+                        for (int i = 0; i < n; i++)
+                        {
+                            for (int j = 0; j < n; j++)
+                            {
+                                cout << praznoPolje[i][j] << "  ";
+                            }
+                            cout << endl;
+                        }
+                    }
+                }
+                else
+                {
+                    praznoPolje[pogadanjeR][pogadanjeC] = 6;
+                    clear_screen();
+                    cout << "Bomba je pronađena!" << " " << brPogodenih << endl;
+                }
+            }
+            else
+            {
+                cout << "Već ste upisali ovo polje! :)" << endl;
+            }
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    cout << praznoPolje[i][j] << "  ";
+                }
+                cout << endl;
             }
         }
         else
         {
-            cout << "Unjeli ste pre veliko polje! :)" << endl;
+            clear_screen();
+            cout << "Unjeli ste kordinate koje se ne nalaze u polju! :)" << endl;
         }
 
-        int praznoPolje[n][n];
-        /*= {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-           {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-           {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-           {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-           {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-           {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-           {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-           {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-           {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-           {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
-        */
-            for (int i = 0; i < n; i++)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                praznoPolje[i][j] = 0;
-            }
-        }
-        if (praznoPolje[pogadanjeR][pogadanjeC] == 0)
-        {
-            praznoPolje[pogadanjeR][pogadanjeC] = 1;
-        }
+
 
         while (pogadanje != bomba)
         {
@@ -154,27 +192,46 @@ int main()
                     if (pogadanje != bomba)
                     {
                         brPogodenih++;
+                        clear_screen();
+                        if (brPogodenih == n * n - 1)
+                        {
+                            cout << "Dobili ste maksimalan broj bodova! :)" << " " << brPogodenih << endl;
+                            for (int i = 0; i < n; i++)
+                            {
+                                for (int j = 0; j < n; j++)
+                                {
+                                    cout << praznoPolje[i][j] << "  ";
+                                }
+                                cout << endl;
+                            }
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        praznoPolje[pogadanjeR][pogadanjeC] = 6;
+                        clear_screen();
+                        cout << "Bomba je pronađena!" << " " << brPogodenih << endl;
                     }
                 }
                 else
                 {
-                    cout << "Vec ste upisali ovo polje! :)" << endl;
+                    cout << "Već ste upisali ovo polje! :)" << endl;
                 }
-
-                if (brPogodenih == n * n - 1)
+                for (int i = 0; i < n; i++)
                 {
-                    cout << "Dobili ste maksimalan broj bodova! :)" << " " << brPogodenih << endl;
-                    break;
+                    for (int j = 0; j < n; j++)
+                    {
+                        cout << praznoPolje[i][j] << "  ";
+                    }
+                    cout << endl;
                 }
             }
             else
             {
-                cout << "Unjeli ste pre veliko polje! :)" << endl;
+                clear_screen();
+                cout << "Unjeli ste kordinate koje se ne nalaze u polju! :)" << endl;
             }
-        }
-        if (pogadanje == bomba)
-        {
-            cout << "Bomba je pronađena!" << " " << brPogodenih << endl;
         }
     }
     else
