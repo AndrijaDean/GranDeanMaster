@@ -107,10 +107,10 @@ int main()
             }*/
             cout << endl
                  << endl
-                 <<"                 Error 404"
+                 << "              Error 404"
                  << endl
                  << endl
-                 << "Leaderboard is temporarily unavailable" << endl;
+                 << "Leaderboard is temporarily unavailable." << endl;
             sleep(5);
             clear_screen();
         }
@@ -160,8 +160,8 @@ int main()
 
             int pogadanje = polje[pogadanjeR][pogadanjeC];
 
-            brPogodenih = 0;//maknuti kada ću implementirati datoteke
-            //int brPogodenihP = 0;
+            brPogodenih = 0; // maknuti kada ću implementirati datoteke
+            // int brPogodenihP = 0;
 
             if (pogadanjeR >= 0 && pogadanjeR < n && pogadanjeC >= 0 && pogadanjeC < n)
             {
@@ -206,7 +206,7 @@ int main()
             else
             {
                 clear_screen();
-                cout << "Unjeli ste kordinate koje se ne nalaze u polju! :)" << endl;
+                cout << "Unjeli ste koordinate koje se ne nalaze u polju! :)" << endl;
                 for (int i = 0; i < n; i++)
                 {
                     for (int j = 0; j < n; j++)
@@ -245,8 +245,8 @@ int main()
                             {
                                 cout << "Dobili ste maksimalan broj bodova! :)" << " " << brPogodenih << endl;
 
-                                //brPogodenihP += brPogodenih;
-                                // igraci[brIgraca].bodoviIgraca = brPogodenihP;
+                                // brPogodenihP += brPogodenih;
+                                //  igraci[brIgraca].bodoviIgraca = brPogodenihP;
 
                                 for (int i = 0; i < n; i++)
                                 {
@@ -267,10 +267,10 @@ int main()
                             clear_screen();
                             cout << "Bomba je pronađena!" << " " << brPogodenih << endl;
 
-                            //brPogodenihP += brPogodenih;
+                            // brPogodenihP += brPogodenih;
 
                             // igraci[brIgraca].bodoviIgraca = brPogodenihP;
-                            //ofstream inDatoteka("C:/Users/user/Documents/GitHub/GranDeanMaster/leaderboard.bin", ios::binary | ios::app);
+                            // ofstream inDatoteka("C:/Users/user/Documents/GitHub/GranDeanMaster/leaderboard.bin", ios::binary | ios::app);
                             /*inDatoteka.write((char *)&igraci[brIgraca], sizeof(Igrac));
                             inDatoteka.close();
                             brIgraca++;*/
@@ -291,7 +291,7 @@ int main()
                     else
                     {
                         clear_screen();
-                        cout << "Već ste upisali koortinate ovog polja! :)";
+                        cout << "Već ste upisali koordinate ovog polja! :)";
                     }
                     cout << endl;
                     for (int i = 0; i < n; i++)
@@ -332,7 +332,7 @@ int main()
                 cout << "                                            ░█▀▀░█░█░█▀█░█▀█" << endl;
                 cout << "                                            ░▀▀█░█▀█░█░█░█▀▀" << endl;
                 cout << "                                            ░▀▀▀░▀░▀░▀▀▀░▀░░" << endl;
-                cout << "----------------------------------------------------------------------------------------------------------" << endl;
+                cout << "-------------------------------------------------------------------------------------------------------------------" << endl;
                 cout << endl
                      << "░▀█░░░░     ░█▀█░█▀█░█░░░▀▀█░█▀▀    ░▀▀█░█░█░▀▀█" << endl;
                 cout << "░░█░░░░     ░█▀▀░█░█░█░░░░░█░█▀▀░   ░░▀▄░▄▀▄░░▀▄" << endl;
@@ -342,26 +342,27 @@ int main()
                 cout << "░▄▀░░░░     ░█▀▀░█░█░█░░░░░█░█▀▀░   ░▀▀▄░▄▀▄░▀▀▄" << endl;
                 cout << "░▀▀▀░▀░     ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀    ░▀▀░░▀░▀░▀▀░" << endl;
                 cout << endl
-                     << "░▀▀█░░░     ░█▀█░█▀█░█░░░▀▀█░█▀▀    ░▀▀█░█░█░▀▀█" << endl;
-                cout << "░░▀▄░░░     ░█▀▀░█░█░█░░░░░█░█▀▀░   ░▄▀░░▄▀▄░▄▀░" << endl;
-                cout << "░▀▀░░▀░     ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀    ░▀░░░▀░▀░▀░░" << endl;
+                     << "░▀▀█░░░     ░█▀█░█▀█░█░░░▀▀█░█▀▀    ░▀▀█░█░█░▀▀█                                ░█▀▄░█▀█░█▀▄░█▀█░█░█░▀█▀░░░░" << endl;
+                cout << "░░▀▄░░░     ░█▀▀░█░█░█░░░░░█░█▀▀░   ░▄▀░░▄▀▄░▄▀░                                ░█▀▄░█░█░█░█░█░█░█░█░░█░░░▀░" << endl;
+                cout << "░▀▀░░▀░     ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀    ░▀░░░▀░▀░▀░░                                ░▀▀░░▀▀▀░▀▀░░▀▀▀░░▀░░▀▀▀░░▀░    ";
+                cout << brPogodenih<<endl;
                 unsigned long long int izborVpolja;
                 cin >> izborVpolja;
-                if (izborVpolja == 1 && brPogodenih>=10)
+                if (izborVpolja == 1 && brPogodenih >= 10)
                 {
                     n = 3;
                     sleep(2);
                     clear_screen();
                     break;
                 }
-                else if (izborVpolja == 2 && brPogodenih >=8)
+                else if (izborVpolja == 2 && brPogodenih >= 8)
                 {
                     n = 5;
                     sleep(2);
                     clear_screen();
                     break;
                 }
-                else if (izborVpolja == 3 && brPogodenih >=20)
+                else if (izborVpolja == 3 && brPogodenih >= 20)
                 {
                     n = 7;
                     sleep(2);
@@ -374,8 +375,13 @@ int main()
                     break;
                 }
 
-                else
+                else if (izborVpolja == 1 | izborVpolja == 2 | izborVpolja == 3 && brPogodenih < 20)
                 {
+                    cout << "Nemate dovoljan broj bodova!";
+                    sleep(1);
+                    clear_screen();
+                }
+                else{
                     clear_screen();
                 }
             }
