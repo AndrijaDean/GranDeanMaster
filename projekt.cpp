@@ -61,6 +61,7 @@ int main()
 
     int n{4};
     int brPogodenih = 0;
+    int brPogodenihP = 0;
 
     while (1)
     {
@@ -161,7 +162,6 @@ int main()
             int pogadanje = polje[pogadanjeR][pogadanjeC];
 
             brPogodenih = 0; // maknuti kada ću implementirati datoteke
-            // int brPogodenihP = 0;
 
             if (pogadanjeR >= 0 && pogadanjeR < n && pogadanjeC >= 0 && pogadanjeC < n)
             {
@@ -245,7 +245,7 @@ int main()
                             {
                                 cout << "Dobili ste maksimalan broj bodova! :)" << " " << brPogodenih << endl;
 
-                                // brPogodenihP += brPogodenih;
+                                brPogodenihP += brPogodenih;
                                 //  igraci[brIgraca].bodoviIgraca = brPogodenihP;
 
                                 for (int i = 0; i < n; i++)
@@ -267,7 +267,7 @@ int main()
                             clear_screen();
                             cout << "Bomba je pronađena!" << " " << brPogodenih << endl;
 
-                            // brPogodenihP += brPogodenih;
+                            brPogodenihP += brPogodenih;
 
                             // igraci[brIgraca].bodoviIgraca = brPogodenihP;
                             // ofstream inDatoteka("C:/Users/user/Documents/GitHub/GranDeanMaster/leaderboard.bin", ios::binary | ios::app);
@@ -334,40 +334,70 @@ int main()
                 cout << "                                            ░▀▀▀░▀░▀░▀▀▀░▀░░" << endl;
                 cout << "-------------------------------------------------------------------------------------------------------------------" << endl;
                 cout << endl
-                     << "░▀█░░░░     ░█▀█░█▀█░█░░░▀▀█░█▀▀    ░▀▀█░█░█░▀▀█" << endl;
-                cout << "░░█░░░░     ░█▀▀░█░█░█░░░░░█░█▀▀░   ░░▀▄░▄▀▄░░▀▄" << endl;
-                cout << "░▀▀▀░▀░     ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀    ░▀▀░░▀░▀░▀▀░" << endl;
+                     << "░▀█░░░░  ░█▀█░█▀█░█░░░▀▀█░█▀▀    ░▀▀█░█░█░▀▀█" << endl;
+                cout << "░░█░░░░  ░█▀▀░█░█░█░░░░░█░█▀▀░   ░░▀▄░▄▀▄░░▀▄" << endl;
+                cout << "░▀▀▀░▀░  ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀    ░▀▀░░▀░▀░▀▀░" << endl;
                 cout << endl
-                     << "░▀▀▄░░░     ░█▀█░█▀█░█░░░▀▀█░█▀▀    ░█▀▀░█░█░█▀▀" << endl;
-                cout << "░▄▀░░░░     ░█▀▀░█░█░█░░░░░█░█▀▀░   ░▀▀▄░▄▀▄░▀▀▄" << endl;
-                cout << "░▀▀▀░▀░     ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀    ░▀▀░░▀░▀░▀▀░" << endl;
+                     << "░▀▀▄░░░  ░█▀█░█▀█░█░░░▀▀█░█▀▀    ░█▀▀░█░█░█▀▀" << endl;
+                cout << "░▄▀░░░░  ░█▀▀░█░█░█░░░░░█░█▀▀░   ░▀▀▄░▄▀▄░▀▀▄" << endl;
+                cout << "░▀▀▀░▀░  ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀    ░▀▀░░▀░▀░▀▀░" << endl;
                 cout << endl
-                     << "░▀▀█░░░     ░█▀█░█▀█░█░░░▀▀█░█▀▀    ░▀▀█░█░█░▀▀█                                ░█▀▄░█▀█░█▀▄░█▀█░█░█░▀█▀░░░░" << endl;
-                cout << "░░▀▄░░░     ░█▀▀░█░█░█░░░░░█░█▀▀░   ░▄▀░░▄▀▄░▄▀░                                ░█▀▄░█░█░█░█░█░█░█░█░░█░░░▀░" << endl;
-                cout << "░▀▀░░▀░     ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀    ░▀░░░▀░▀░▀░░                                ░▀▀░░▀▀▀░▀▀░░▀▀▀░░▀░░▀▀▀░░▀░    ";
-                cout << brPogodenih<<endl;
+                     << "░▀▀█░░░  ░█▀█░█▀█░█░░░▀▀█░█▀▀    ░▀▀█░█░█░▀▀█                                ░█▀▄░█▀█░█▀▄░█▀█░█░█░▀█▀░░░░" << endl;
+                cout << "░░▀▄░░░  ░█▀▀░█░█░█░░░░░█░█▀▀░   ░▄▀░░▄▀▄░▄▀░                                ░█▀▄░█░█░█░█░█░█░█░█░░█░░░▀░" << endl;
+                cout << "░▀▀░░▀░  ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀    ░▀░░░▀░▀░▀░░                                ░▀▀░░▀▀▀░▀▀░░▀▀▀░░▀░░▀▀▀░░▀░    ";//napisati koliko koje polje košta
+                cout << brPogodenihP << endl;
                 unsigned long long int izborVpolja;
                 cin >> izborVpolja;
-                if (izborVpolja == 1 && brPogodenih >= 10)
+                if (izborVpolja == 1 && brPogodenihP >= 10)
                 {
-                    n = 3;
-                    sleep(2);
-                    clear_screen();
-                    break;
+                    if (n == 3)
+                    {
+                        cout << "Već ste kupili ovo polje!";
+                        sleep(1);
+                        clear_screen();
+                    }
+                    else
+                    {
+                        n = 3;
+                        sleep(2);
+                        brPogodenihP -= 10;
+                        clear_screen();
+                        break;
+                    }
                 }
-                else if (izborVpolja == 2 && brPogodenih >= 8)
+                else if (izborVpolja == 2 && brPogodenihP >= 8)
                 {
-                    n = 5;
-                    sleep(2);
-                    clear_screen();
-                    break;
+                    if (n == 5)
+                    {
+                        cout << "Već ste kupili ovo polje!";
+                        sleep(1);
+                        clear_screen();
+                    }
+                    else
+                    {
+                        n = 5;
+                        sleep(2);
+                        brPogodenihP -= 8;
+                        clear_screen();
+                        break;
+                    }
                 }
-                else if (izborVpolja == 3 && brPogodenih >= 20)
+                else if (izborVpolja == 3 && brPogodenihP >= 20)
                 {
-                    n = 7;
-                    sleep(2);
-                    clear_screen();
-                    break;
+                    if (n == 7)
+                    {
+                        cout << "Već ste kupili ovo polje!";
+                        sleep(1);
+                        clear_screen();
+                    }
+                    else
+                    {
+                        n = 7;
+                        sleep(2);
+                        brPogodenihP -= 20;
+                        clear_screen();
+                        break;
+                    }
                 }
                 else if (izborVpolja == 4)
                 {
@@ -375,13 +405,14 @@ int main()
                     break;
                 }
 
-                else if (izborVpolja == 1 | izborVpolja == 2 | izborVpolja == 3 && brPogodenih < 20)
+                else if (izborVpolja == 1 | izborVpolja == 2 | izborVpolja == 3 && brPogodenihP < 20)
                 {
                     cout << "Nemate dovoljan broj bodova!";
                     sleep(1);
                     clear_screen();
                 }
-                else{
+                else
+                {
                     clear_screen();
                 }
             }
