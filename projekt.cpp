@@ -60,8 +60,8 @@ int main()
     clear_screen();
 
     int n{4};
-    int brPogodenih = 0;
-    int brPogodenihP = 0;
+    unsigned long long int brPogodenih = 0;
+    unsigned long long int ukupanBrojPogodenih = 0;
 
     while (1)
     {
@@ -245,7 +245,7 @@ int main()
                             {
                                 cout << "Dobili ste maksimalan broj bodova! :)" << " " << brPogodenih << endl;
 
-                                brPogodenihP += brPogodenih;
+                                ukupanBrojPogodenih += brPogodenih;
                                 //  igraci[brIgraca].bodoviIgraca = brPogodenihP;
 
                                 for (int i = 0; i < n; i++)
@@ -267,7 +267,7 @@ int main()
                             clear_screen();
                             cout << "Bomba je pronađena!" << " " << brPogodenih << endl;
 
-                            brPogodenihP += brPogodenih;
+                            ukupanBrojPogodenih += brPogodenih;
 
                             // igraci[brIgraca].bodoviIgraca = brPogodenihP;
                             // ofstream inDatoteka("C:/Users/user/Documents/GitHub/GranDeanMaster/leaderboard.bin", ios::binary | ios::app);
@@ -345,10 +345,10 @@ int main()
                      << "░▀▀█░░░  ░█▀█░█▀█░█░░░▀▀█░█▀▀    ░▀▀█░█░█░▀▀█                                ░█▀▄░█▀█░█▀▄░█▀█░█░█░▀█▀░░░░" << endl;
                 cout << "░░▀▄░░░  ░█▀▀░█░█░█░░░░░█░█▀▀░   ░▄▀░░▄▀▄░▄▀░                                ░█▀▄░█░█░█░█░█░█░█░█░░█░░░▀░" << endl;
                 cout << "░▀▀░░▀░  ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀    ░▀░░░▀░▀░▀░░                                ░▀▀░░▀▀▀░▀▀░░▀▀▀░░▀░░▀▀▀░░▀░    ";//napisati koliko koje polje košta
-                cout << brPogodenihP << endl;
+                cout << ukupanBrojPogodenih << endl;
                 unsigned long long int izborVpolja;
                 cin >> izborVpolja;
-                if (izborVpolja == 1 && brPogodenihP >= 10)
+                if (izborVpolja == 1 && ukupanBrojPogodenih >= 10)
                 {
                     if (n == 3)
                     {
@@ -360,12 +360,12 @@ int main()
                     {
                         n = 3;
                         sleep(2);
-                        brPogodenihP -= 10;
+                        ukupanBrojPogodenih -= 10;
                         clear_screen();
                         break;
                     }
                 }
-                else if (izborVpolja == 2 && brPogodenihP >= 8)
+                else if (izborVpolja == 2 && ukupanBrojPogodenih >= 8)
                 {
                     if (n == 5)
                     {
@@ -377,12 +377,12 @@ int main()
                     {
                         n = 5;
                         sleep(2);
-                        brPogodenihP -= 8;
+                        ukupanBrojPogodenih -= 8;
                         clear_screen();
                         break;
                     }
                 }
-                else if (izborVpolja == 3 && brPogodenihP >= 20)
+                else if (izborVpolja == 3 && ukupanBrojPogodenih >= 20)
                 {
                     if (n == 7)
                     {
@@ -394,7 +394,7 @@ int main()
                     {
                         n = 7;
                         sleep(2);
-                        brPogodenihP -= 20;
+                        ukupanBrojPogodenih -= 20;
                         clear_screen();
                         break;
                     }
@@ -405,7 +405,7 @@ int main()
                     break;
                 }
 
-                else if (izborVpolja == 1 | izborVpolja == 2 | izborVpolja == 3 && brPogodenihP < 20)
+                else if (izborVpolja == 1 | izborVpolja == 2 | izborVpolja == 3 && ukupanBrojPogodenih < 20)
                 {
                     cout << "Nemate dovoljan broj bodova!";
                     sleep(1);
