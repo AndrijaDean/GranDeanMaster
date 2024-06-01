@@ -59,35 +59,49 @@ int main()
     cin.getline(igraci[brIgraca].imeIgraca, 50);
     clear_screen();
 
-    int n{4};
+    int n{3};
+    int izborN{0};
+    unsigned long long int izbor;
     unsigned long long int brPogodenih = 0;
     unsigned long long int ukupanBrojPogodenih = 0;
 
     while (1)
     {
-        cout << endl
-             << "                              _/  _/_/_/    _/_/_/      _/_/    _/      _/    _/_/    _/_/_/    _/_/_/  " << endl;
-        cout << "                             _/  _/    _/  _/    _/  _/    _/  _/_/    _/  _/    _/  _/    _/    _/     " << endl;
-        cout << "                            _/  _/_/_/    _/_/_/    _/    _/  _/  _/  _/  _/_/_/_/ /___/  _/    _/      " << endl;
-        cout << "                               _/        _/    _/  _/    _/  _/    _/_/  _/    _/  _/    _/    _/       " << endl;
-        cout << "                          _/  _/        _/    _/    _/_/    _/      _/  _/    _/  _/_/_/    _/_/_/      " << endl;
-        cout << endl
-             << "                              _/_/_/      _/_/    _/      _/  _/_/_/    _/    _/                        " << endl;
-        cout << "                             _/    _/  _/    _/  _/_/  _/_/  _/    _/  _/    _/                         " << endl;
-        cout << "                            _/_/_/    _/    _/  _/  _/  _/  _/_/_/    _/    _/                          " << endl;
-        cout << "                           _/    _/  _/    _/  _/      _/  _/    _/  _/    _/                           " << endl;
-        cout << "                          _/_/_/      _/_/    _/      _/  _/_/_/      _/_/                              " << endl
-             << endl;
+        while (1)
+        {
+            cout << endl
+                 << "                              _/  _/_/_/    _/_/_/      _/_/    _/      _/    _/_/    _/_/_/    _/_/_/  " << endl;
+            cout << "                             _/  _/    _/  _/    _/  _/    _/  _/_/    _/  _/    _/  _/    _/    _/     " << endl;
+            cout << "                            _/  _/_/_/    _/_/_/    _/    _/  _/  _/  _/  _/_/_/_/ /___/  _/    _/      " << endl;
+            cout << "                               _/        _/    _/  _/    _/  _/    _/_/  _/    _/  _/    _/    _/       " << endl;
+            cout << "                          _/  _/        _/    _/    _/_/    _/      _/  _/    _/  _/_/_/    _/_/_/      " << endl;
+            cout << endl
+                 << "                              _/_/_/      _/_/    _/      _/  _/_/_/    _/    _/                        " << endl;
+            cout << "                             _/    _/  _/    _/  _/_/  _/_/  _/    _/  _/    _/                         " << endl;
+            cout << "                            _/_/_/    _/    _/  _/  _/  _/  _/_/_/    _/    _/                          " << endl;
+            cout << "                           _/    _/  _/    _/  _/      _/  _/    _/  _/    _/                           " << endl;
+            cout << "                          _/_/_/      _/_/    _/      _/  _/_/_/      _/_/                              " << endl
+                 << endl;
 
-        cout << "------------------------------------------------------------------------------------------------------------" << endl;
+            cout << "------------------------------------------------------------------------------------------------------------" << endl;
 
-        cout << endl
-             << "     ░█▀█░█░░░█▀█░█░█      |      ░█░░░█▀▀░█▀█░█▀▄░█▀▀░█▀▄░█▀▄░█▀█░█▀█░█▀▄░█▀▄      |      ░█▀▀░█░█░█▀█░█▀█" << endl;
-        cout << "     ░█▀▀░█░░░█▀█░░█░      |      ░█░░░█▀▀░█▀█░█░█░█▀▀░█▀▄░█▀▄░█░█░█▀█░█▀▄░█░█      |      ░▀▀█░█▀█░█░█░█▀▀" << endl;
-        cout << "     ░▀░░░▀▀▀░▀░▀░░▀░      |      ░▀▀▀░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀░▀░▀▀░      |      ░▀▀▀░▀░▀░▀▀▀░▀░░" << endl;
+            cout << endl
+                 << "     ░█▀█░█░░░█▀█░█░█      |      ░█░░░█▀▀░█▀█░█▀▄░█▀▀░█▀▄░█▀▄░█▀█░█▀█░█▀▄░█▀▄      |      ░█▀▀░█░█░█▀█░█▀█" << endl;
+            cout << "     ░█▀▀░█░░░█▀█░░█░      |      ░█░░░█▀▀░█▀█░█░█░█▀▀░█▀▄░█▀▄░█░█░█▀█░█▀▄░█░█      |      ░▀▀█░█▀█░█░█░█▀▀" << endl;
+            cout << "     ░▀░░░▀▀▀░▀░▀░░▀░      |      ░▀▀▀░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀░▀░▀▀░      |      ░▀▀▀░▀░▀░▀▀▀░▀░░" << endl;
 
-        unsigned long long int izbor;
-        cin >> izbor;
+            cin >> izbor;
+            if (izbor == 0 | izbor == 1 | izbor == 2 | izbor == 3)
+            {
+                break;
+            }
+            else
+            {
+                cout << "Neispravan unos!";
+                sleep(1);
+                clear_screen();
+            }
+        }
         if (izbor == 2)
         {
             clear_screen();
@@ -161,7 +175,7 @@ int main()
 
             int pogadanje = polje[pogadanjeR][pogadanjeC];
 
-            brPogodenih = 0; // maknuti kada ću implementirati datoteke
+            brPogodenih = 0;
 
             if (pogadanjeR >= 0 && pogadanjeR < n && pogadanjeC >= 0 && pogadanjeC < n)
             {
@@ -326,31 +340,49 @@ int main()
 
         else if (izbor == 3)
         {
+            unsigned long long int izborVpolja;
             while (1)
             {
-                clear_screen();
-                cout << "                                            ░█▀▀░█░█░█▀█░█▀█" << endl;
-                cout << "                                            ░▀▀█░█▀█░█░█░█▀▀" << endl;
-                cout << "                                            ░▀▀▀░▀░▀░▀▀▀░▀░░" << endl;
-                cout << "-------------------------------------------------------------------------------------------------------------------" << endl;
-                cout << endl
-                     << "░▀█░░░░  ░█▀█░█▀█░█░░░▀▀█░█▀▀    ░▀▀█░█░█░▀▀█" << endl;
-                cout << "░░█░░░░  ░█▀▀░█░█░█░░░░░█░█▀▀░   ░░▀▄░▄▀▄░░▀▄" << endl;
-                cout << "░▀▀▀░▀░  ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀    ░▀▀░░▀░▀░▀▀░" << endl;
-                cout << endl
-                     << "░▀▀▄░░░  ░█▀█░█▀█░█░░░▀▀█░█▀▀    ░█▀▀░█░█░█▀▀" << endl;
-                cout << "░▄▀░░░░  ░█▀▀░█░█░█░░░░░█░█▀▀░   ░▀▀▄░▄▀▄░▀▀▄" << endl;
-                cout << "░▀▀▀░▀░  ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀    ░▀▀░░▀░▀░▀▀░" << endl;
-                cout << endl
-                     << "░▀▀█░░░  ░█▀█░█▀█░█░░░▀▀█░█▀▀    ░▀▀█░█░█░▀▀█                                ░█▀▄░█▀█░█▀▄░█▀█░█░█░▀█▀░░░░" << endl;
-                cout << "░░▀▄░░░  ░█▀▀░█░█░█░░░░░█░█▀▀░   ░▄▀░░▄▀▄░▄▀░                                ░█▀▄░█░█░█░█░█░█░█░█░░█░░░▀░" << endl;
-                cout << "░▀▀░░▀░  ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀    ░▀░░░▀░▀░▀░░                                ░▀▀░░▀▀▀░▀▀░░▀▀▀░░▀░░▀▀▀░░▀░    ";//napisati koliko koje polje košta
-                cout << ukupanBrojPogodenih << endl;
-                unsigned long long int izborVpolja;
-                cin >> izborVpolja;
-                if (izborVpolja == 1 && ukupanBrojPogodenih >= 10)
+                while (1)
                 {
-                    if (n == 3)
+                    clear_screen();
+                    cout << "                                            ░█▀▀░█░█░█▀█░█▀█                     ░█▀▄░█▀█░█▀▄░█▀█░█░█░▀█▀░░░░" << endl;
+                    cout << "                                            ░▀▀█░█▀█░█░█░█▀▀                     ░█▀▄░█░█░█░█░█░█░█░█░░█░░░▀░" << endl;
+                    cout << "                                            ░▀▀▀░▀░▀░▀▀▀░▀░░                     ░▀▀░░▀▀▀░▀▀░░▀▀▀░░▀░░▀▀▀░░▀░   ";
+                    cout << ukupanBrojPogodenih << endl;
+                    cout << "-------------------------------------------------------------------------------------------------------------------" << endl;
+                    cout << endl
+                         << "░▀█░░░░  ░█▀█░█▀█░█░░░▀▀█░█▀▀    ░█░█░█░█░█░█   ░░░░░█▀▀░░░░░" << endl;
+                    cout << "░░█░░░░  ░█▀▀░█░█░█░░░░░█░█▀▀░   ░░▀█░▄▀▄░░▀█   ░▄▄▄░█▀█░░░░░" << endl;
+                    cout << "░▀▀▀░▀░  ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀    ░░░▀░▀░▀░░░▀   ░░░░░▀▀▀░░░░░" << endl;
+                    cout << endl
+                         << "░▀▀▄░░░  ░█▀█░█▀█░█░░░▀▀█░█▀▀    ░█▀▀░█░█░█▀▀   ░░░░░▀█░░▀▀▄░" << endl;
+                    cout << "░▄▀░░░░  ░█▀▀░█░█░█░░░░░█░█▀▀░   ░▀▀▄░▄▀▄░▀▀▄   ░▄▄▄░░█░░▄▀░░" << endl;
+                    cout << "░▀▀▀░▀░  ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀    ░▀▀░░▀░▀░▀▀░   ░░░░░▀▀▀░▀▀▀░" << endl;
+                    cout << endl
+                         << "░▀▀█░░░  ░█▀█░█▀█░█░░░▀▀█░█▀▀    ░▀▀█░█░█░▀▀█   ░░░░░▀▀▄░▄▀▄░" << endl;
+                    cout << "░░▀▄░░░  ░█▀▀░█░█░█░░░░░█░█▀▀░   ░▄▀░░▄▀▄░▄▀░   ░▄▄▄░▄▀░░█/█░" << endl;
+                    cout << "░▀▀░░▀░  ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀    ░▀░░░▀░▀░▀░░   ░░░░░▀▀▀░░▀░░" << endl;
+                    cout << endl
+                         << "░█░█░░░  ░█▀█░█▀█░█░░░▀▀█░█▀▀    ░░░░░█░█░░░░   ░░░░░█░█░█▀▀░" << endl;
+                    cout << "░▀▀█░░░  ░█▀▀░█░█░█░░░░░█░█▀▀░   ░█▀█░▄▀▄░█▀█   ░▄▄▄░▀▀█░▀▀▄░" << endl;
+                    cout << "░░░▀░▀░  ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀    ░▀░▀░▀░▀░▀░▀   ░░░░░░░▀░▀▀░░" << endl;
+                    cin >> izborVpolja;
+                    if (izborVpolja == 0 | izborVpolja == 1 | izborVpolja == 2 | izborVpolja == 3 | izborVpolja == 4)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        cout << "Neispravan unos!";
+                        sleep(1);
+                        clear_screen();
+                    }
+                }
+
+                if (izborVpolja == 1 && ukupanBrojPogodenih >= 6)
+                {
+                    if (n == 4)
                     {
                         cout << "Već ste kupili ovo polje!";
                         sleep(1);
@@ -358,14 +390,14 @@ int main()
                     }
                     else
                     {
-                        n = 3;
-                        sleep(2);
-                        ukupanBrojPogodenih -= 10;
+                        n = 4;
+                        sleep(1);
+                        ukupanBrojPogodenih -= 6;
                         clear_screen();
                         break;
                     }
                 }
-                else if (izborVpolja == 2 && ukupanBrojPogodenih >= 8)
+                else if (izborVpolja == 2 && ukupanBrojPogodenih >= 12)
                 {
                     if (n == 5)
                     {
@@ -376,8 +408,8 @@ int main()
                     else
                     {
                         n = 5;
-                        sleep(2);
-                        ukupanBrojPogodenih -= 8;
+                        sleep(1);
+                        ukupanBrojPogodenih -= 12;
                         clear_screen();
                         break;
                     }
@@ -393,19 +425,72 @@ int main()
                     else
                     {
                         n = 7;
-                        sleep(2);
+                        sleep(1);
                         ukupanBrojPogodenih -= 20;
                         clear_screen();
                         break;
                     }
                 }
-                else if (izborVpolja == 4)
+                else if (izborVpolja == 4 && ukupanBrojPogodenih >= 45)
+                {
+                    while (1)
+                    {
+                        clear_screen();
+                        cout << "                                            ░█▀▀░█░█░█▀█░█▀█                     ░█▀▄░█▀█░█▀▄░█▀█░█░█░▀█▀░░░░" << endl;
+                        cout << "                                            ░▀▀█░█▀█░█░█░█▀▀                     ░█▀▄░█░█░█░█░█░█░█░█░░█░░░▀░" << endl;
+                        cout << "                                            ░▀▀▀░▀░▀░▀▀▀░▀░░                     ░▀▀░░▀▀▀░▀▀░░▀▀▀░░▀░░▀▀▀░░▀░   ";
+                        cout << ukupanBrojPogodenih << endl;
+                        cout << "-------------------------------------------------------------------------------------------------------------------" << endl;
+                        cout << endl
+                             << "░▀█░░░░  ░█▀█░█▀█░█░░░▀▀█░█▀▀░   ░█░█░█░█░█░█    ░░░░░█▀▀░░░░░" << endl;
+                        cout << "░░█░░░░  ░█▀▀░█░█░█░░░░░█░█▀▀░   ░░▀█░▄▀▄░░▀█    ░▄▄▄░█▀█░░░░░" << endl;
+                        cout << "░▀▀▀░▀░  ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀░   ░░░▀░▀░▀░░░▀    ░░░░░▀▀▀░░░░░" << endl;
+                        cout << endl 
+                             << "░▀▀▄░░░  ░█▀█░█▀█░█░░░▀▀█░█▀▀░   ░█▀▀░█░█░█▀▀    ░░░░░▀█░░▀▀▄░" << endl;
+                        cout << "░▄▀░░░░  ░█▀▀░█░█░█░░░░░█░█▀▀░   ░▀▀▄░▄▀▄░▀▀▄    ░▄▄▄░░█░░▄▀░░" << endl;
+                        cout << "░▀▀▀░▀░  ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀░   ░▀▀░░▀░▀░▀▀░    ░░░░░▀▀▀░▀▀▀░" << endl;
+                        cout << endl
+                             << "░▀▀█░░░  ░█▀█░█▀█░█░░░▀▀█░█▀▀░   ░▀▀█░█░█░▀▀█    ░░░░░▀▀▄░▄▀▄░" << endl;
+                        cout << "░░▀▄░░░  ░█▀▀░█░█░█░░░░░█░█▀▀░   ░▄▀░░▄▀▄░▄▀░    ░▄▄▄░▄▀░░█/█░" << endl;
+                        cout << "░▀▀░░▀░  ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀░   ░▀░░░▀░▀░▀░░    ░░░░░▀▀▀░░▀░░" << endl;
+                        cout << endl
+                             << "░█░█░░░  ░█▀█░█▀█░█░░░▀▀█░█▀▀░   ░░░░░█░█░░░░    ░░░░░█░█░█▀▀░" << endl;
+                        cout << "░▀▀█░░░  ░█▀▀░█░█░█░░░░░█░█▀▀░   ░█▀█░▄▀▄░█▀█    ░▄▄▄░▀▀█░▀▀▄░" << endl;
+                        cout << "░░░▀░▀░  ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀░   ░▀░▀░▀░▀░▀░▀    ░░░░░░░▀░▀▀░░" << endl;
+                        cout << endl
+                             << "░█░█░█▀▀░█░░░▀█▀░█▀▀░▀█▀░█▀█░█▀█░░░█▀█░█▀█░█░░░▀▀█░█▀█░░░░" << endl;
+                        cout << "░█░█░█▀▀░█░░░░█░░█░░░░█░░█░█░█▀█░░░█▀▀░█░█░█░░░░░█░█▀█░░▀░" << endl;
+                        cout << "░░▀░░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀░▀░░░▀░░░▀▀▀░▀▀▀░▀▀░░▀░▀░░▀░   ";
+                        cin >> izborN;
+                        if (n == izborN)
+                        {
+                            cout << "Već ste kupili ovo polje!";
+                            sleep(1);
+                            clear_screen();
+                        }
+
+                        else if (izborN == 0 | izborN==1)
+                        {
+                            clear_screen();
+                            break;
+                        }
+                        else
+                        {
+                            n = izborN;
+                            sleep(1);
+                            ukupanBrojPogodenih -= 45;
+                            clear_screen();
+                            break;
+                        }
+                    }
+                }
+                else if (izborVpolja == 0)
                 {
                     clear_screen();
                     break;
                 }
 
-                else if (izborVpolja == 1 | izborVpolja == 2 | izborVpolja == 3 && ukupanBrojPogodenih < 20)
+                else if (izborVpolja == 1 | izborVpolja == 2 | izborVpolja == 3 | izborVpolja == 4 && ukupanBrojPogodenih < 50)
                 {
                     cout << "Nemate dovoljan broj bodova!";
                     sleep(1);
@@ -417,7 +502,7 @@ int main()
                 }
             }
         }
-        else if (izbor == 4)
+        else if (izbor == 0)
         {
             clear_screen();
             break;
