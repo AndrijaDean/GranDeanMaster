@@ -1,4 +1,6 @@
+
 #include <iostream>
+#include <cmath>
 
 #include <cstdlib>
 #include <ctime>
@@ -36,8 +38,6 @@ int main()
     clear_screen();
     /*ofstream outDatoteka("", ios::binary | ios::trunc);
     outDatoteka.close();*/
-    struct Igrac igraci[100];
-    int brIgraca = 0;
     cout << endl
          << "                              _/  _/_/_/    _/_/_/      _/_/    _/      _/    _/_/    _/_/_/    _/_/_/  " << endl;
     cout << "                             _/  _/    _/  _/    _/  _/    _/  _/_/    _/  _/    _/  _/    _/    _/     " << endl;
@@ -58,7 +58,11 @@ int main()
          << "                     ░█░█░█▀▀░█▀▀░█▀▄░░░░" << endl;
     cout << "                     ░█░█░▀▀█░█▀▀░█▀▄░░▀░" << endl;
     cout << "                     ░▀▀▀░▀▀▀░▀▀▀░▀░▀░░▀░   ";
+
+    struct Igrac igraci[100];
+    int brIgraca = 0;
     cin.getline(igraci[brIgraca].imeIgraca, 50);
+
     clear_screen();
 
     unsigned long long int n{3};
@@ -107,7 +111,7 @@ int main()
         if (izbor == 2)
         {
             clear_screen();
-            /*ifstream inDatoteka("leaderboard.bin", ios::binary | ios::out);
+            ifstream inDatoteka("leaderboard.bin", ios::binary | ios::out);
             int citac = 0;
             while (inDatoteka.read((char *)&igraci[citac], sizeof(Igrac)))
             {
@@ -121,16 +125,16 @@ int main()
             for (int i = 0; i < citac; i++)
             {
                 cout << igraci[i].imeIgraca << " " << igraci[i].bodoviIgraca << endl;
-            }*/
-            cout << endl
+            }
+            getch();
+            clear_screen();
+            /*cout << endl
                  << endl
                  << "              Error 404"
                  << endl
                  << endl
-                 << "Leaderboard is temporarily unavailable." << endl;
-            getch();
+                 << "Leaderboard is temporarily unavailable." << endl;*/
             // sleep(5);
-            clear_screen();
         }
         else if (izbor == 1)
         {
@@ -170,13 +174,13 @@ int main()
                 cout << endl;
             }
 
-            int pogadanjeR, pogadanjeC;
-            cout << "Unesite redak: ";
+            unsigned long long int pogadanjeR, pogadanjeC;
+            cout << "Unesite redak:  ";
             cin >> pogadanjeR;
             cout << "Unesite stupac: ";
             cin >> pogadanjeC;
 
-            int pogadanje;
+            unsigned long long int pogadanje;
             if (pogadanjeR >= 0 && pogadanjeR < n && pogadanjeC >= 0 && pogadanjeC < n)
             {
                 pogadanje = polje[pogadanjeR][pogadanjeC];
@@ -228,7 +232,7 @@ int main()
             else
             {
                 clear_screen();
-                cout << "Unjeli ste koordinate koje se ne nalaze u polju! :)" << endl;
+                cout << "Upisane koordinate se ne nalaze u polju! :)" << endl;
                 for (int i = 0; i < n; i++)
                 {
                     for (int j = 0; j < n; j++)
@@ -238,16 +242,18 @@ int main()
                     cout << endl;
                 }
             }
-
             while (pogadanje != bomba)
             {
                 cout << "Bomba nije pronađena!" << endl;
-                cout << "Unesite redak: ";
+                cout << "Unesite redak:  ";
                 cin >> pogadanjeR;
                 cout << "Unesite stupac: ";
                 cin >> pogadanjeC;
 
-                pogadanje = polje[pogadanjeR][pogadanjeC];
+                if (pogadanjeR >= 0 && pogadanjeR < n && pogadanjeC >= 0 && pogadanjeC < n)
+                {
+                    pogadanje = polje[pogadanjeR][pogadanjeC];
+                }
 
                 if (pogadanjeR >= 0 && pogadanjeR < n && pogadanjeC >= 0 && pogadanjeC < n)
                 {
@@ -257,10 +263,6 @@ int main()
                         if (pogadanje != bomba)
                         {
                             brPogodenih++;
-                            /*ofstream inDatoteka("leaderboard.bin", ios::binary | ios::app);
-                            inDatoteka.write((char *)&igraci[brIgraca], sizeof(Igrac));
-                            inDatoteka.close();
-                            brIgraca++;*/
 
                             clear_screen();
                             if (brPogodenih == n * n - 1)
@@ -268,7 +270,11 @@ int main()
                                 cout << "Dobili ste maksimalan broj bodova! :)" << " " << brPogodenih << endl;
 
                                 ukupanBrojPogodenih += brPogodenih;
-                                //  igraci[brIgraca].bodoviIgraca = brPogodenihP;
+
+                                igraci[brIgraca].bodoviIgraca = ukupanBrojPogodenih;
+                                ofstream inDatoteka("leaderboard.bin", ios::binary | ios::app | ios::out);
+                                inDatoteka.write((char *)&igraci[brIgraca], sizeof(Igrac));
+                                inDatoteka.close();
 
                                 for (int i = 0; i < n; i++)
                                 {
@@ -292,11 +298,10 @@ int main()
 
                             ukupanBrojPogodenih += brPogodenih;
 
-                            // igraci[brIgraca].bodoviIgraca = brPogodenihP;
-                            // ofstream inDatoteka("C:/Users/user/Documents/GitHub/GranDeanMaster/leaderboard.bin", ios::binary | ios::app);
-                            /*inDatoteka.write((char *)&igraci[brIgraca], sizeof(Igrac));
+                            igraci[brIgraca].bodoviIgraca = ukupanBrojPogodenih;
+                            ofstream inDatoteka("leaderboard.bin", ios::binary | ios::app | ios::out);
+                            inDatoteka.write((char *)&igraci[brIgraca], sizeof(Igrac));
                             inDatoteka.close();
-                            brIgraca++;*/
 
                             for (int i = 0; i < n; i++)
                             {
@@ -340,11 +345,6 @@ int main()
                         cout << endl;
                     }
                 }
-                /*igraci[brIgraca].bodoviIgraca = brPogodenihP;
-                ofstream inDatoteka("C:/Users/user/Documents/GitHub/GranDeanMaster/leaderboard.bin", ios::binary | ios::app);
-                inDatoteka.write((char *)&igraci[brIgraca], sizeof(Igrac));
-                inDatoteka.close();
-                brIgraca++;*/
             }
         }
 
@@ -356,27 +356,27 @@ int main()
                 while (1)
                 {
                     clear_screen();
-                    cout << "                                            ░█▀▀░█░█░█▀█░█▀█                     ░█▀▄░█▀█░█▀▄░█▀█░█░█░▀█▀░░░░" << endl;
-                    cout << "                                            ░▀▀█░█▀█░█░█░█▀▀                     ░█▀▄░█░█░█░█░█░█░█░█░░█░░░▀░" << endl;
-                    cout << "                                            ░▀▀▀░▀░▀░▀▀▀░▀░░                     ░▀▀░░▀▀▀░▀▀░░▀▀▀░░▀░░▀▀▀░░▀░   ";
+                    cout << "                                            ░█▀▀░█░█░█▀█░█▀█░                     ░█▀▄░█▀█░█▀▄░█▀█░█░█░▀█▀░░░░" << endl;
+                    cout << "                                            ░▀▀█░█▀█░█░█░█▀▀░                     ░█▀▄░█░█░█░█░█░█░█░█░░█░░░▀░" << endl;
+                    cout << "                                            ░▀▀▀░▀░▀░▀▀▀░▀░░░                     ░▀▀░░▀▀▀░▀▀░░▀▀▀░░▀░░▀▀▀░░▀░   ";
                     cout << ukupanBrojPogodenih << endl;
                     cout << "-------------------------------------------------------------------------------------------------------------------" << endl;
                     cout << endl
-                         << "░▀█░░░░  ░█▀█░█▀█░█░░░▀▀█░█▀▀░   ░█░█░█░█░█░█  ░░░░░  ░█▀▀░░░░░" << endl;
-                    cout << "░░█░░░░  ░█▀▀░█░█░█░░░░░█░█▀▀░   ░▀▀█░▄▀▄░▀▀█  ░▄▄▄░  ░█▀█░░░░░" << endl;
-                    cout << "░▀▀▀░▀░  ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀░   ░░░▀░▀░▀░░░▀  ░░░░░  ░▀▀▀░░░░░" << endl;
+                         << "░▀█░░░░  ░█▀█░█▀█░█░░░▀▀█░█▀▀░   ░█░█░█░█░█░█░  ░░░░░  ░█▀▀░░░░░" << endl;
+                    cout << "░░█░░░░  ░█▀▀░█░█░█░░░░░█░█▀▀░   ░▀▀█░▄▀▄░▀▀█░  ░▄▄▄░  ░█▀█░░░░░" << endl;
+                    cout << "░▀▀▀░▀░  ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀░   ░░░▀░▀░▀░░░▀░  ░░░░░  ░▀▀▀░░░░░" << endl;
                     cout << endl
-                         << "░▀▀▄░░░  ░█▀█░█▀█░█░░░▀▀█░█▀▀░   ░█▀▀░█░█░█▀▀  ░░░░░  ░▀█░░▀▀▄░" << endl;
-                    cout << "░▄▀░░░░  ░█▀▀░█░█░█░░░░░█░█▀▀░   ░▀▀▄░▄▀▄░▀▀▄  ░▄▄▄░  ░░█░░▄▀░░" << endl;
-                    cout << "░▀▀▀░▀░  ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀░   ░▀▀░░▀░▀░▀▀░  ░░░░░  ░▀▀▀░▀▀▀░" << endl;
+                         << "░▀▀▄░░░  ░█▀█░█▀█░█░░░▀▀█░█▀▀░   ░█▀▀░█░█░█▀▀░  ░░░░░  ░▀█░░▀▀▄░" << endl;
+                    cout << "░▄▀░░░░  ░█▀▀░█░█░█░░░░░█░█▀▀░   ░▀▀▄░▄▀▄░▀▀▄░  ░▄▄▄░  ░░█░░▄▀░░" << endl;
+                    cout << "░▀▀▀░▀░  ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀░   ░▀▀░░▀░▀░▀▀░░  ░░░░░  ░▀▀▀░▀▀▀░" << endl;
                     cout << endl
-                         << "░▀▀█░░░  ░█▀█░█▀█░█░░░▀▀█░█▀▀░   ░▀▀█░█░█░▀▀█  ░░░░░  ░▀▀▄░▄▀▄░" << endl;
-                    cout << "░░▀▄░░░  ░█▀▀░█░█░█░░░░░█░█▀▀░   ░▄▀░░▄▀▄░▄▀░  ░▄▄▄░  ░▄▀░░█/█░" << endl;
-                    cout << "░▀▀░░▀░  ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀░   ░▀░░░▀░▀░▀░░  ░░░░░  ░▀▀▀░░▀░░" << endl;
+                         << "░▀▀█░░░  ░█▀█░█▀█░█░░░▀▀█░█▀▀░   ░▀▀█░█░█░▀▀█░  ░░░░░  ░▀▀▄░▄▀▄░" << endl;
+                    cout << "░░▀▄░░░  ░█▀▀░█░█░█░░░░░█░█▀▀░   ░▄▀░░▄▀▄░▄▀░░  ░▄▄▄░  ░▄▀░░█/█░" << endl;
+                    cout << "░▀▀░░▀░  ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀░   ░▀░░░▀░▀░▀░░░  ░░░░░  ░▀▀▀░░▀░░" << endl;
                     cout << endl
-                         << "░█░█░░░  ░█▀█░█▀█░█░░░▀▀█░█▀▀░   ░░░░░█░█░░░░  ░░░░░  ░█▀▀░▄▀▄░" << endl;
-                    cout << "░▀▀█░░░  ░█▀▀░█░█░█░░░░░█░█▀▀░   ░█▀█░▄▀▄░█▀█  ░▄▄▄░  ░▀▀▄░█/█░" << endl;
-                    cout << "░░░▀░▀░  ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀░   ░▀░▀░▀░▀░▀░▀  ░░░░░  ░▀▀░░░▀░░" << endl;
+                         << "░█░█░░░  ░█▀█░█▀█░█░░░▀▀█░█▀▀░   ░░░░░█░█░░░░░  ░░░░░  ░█▀▀░▄▀▄░" << endl;
+                    cout << "░▀▀█░░░  ░█▀▀░█░█░█░░░░░█░█▀▀░   ░█▀█░▄▀▄░█▀█░  ░▄▄▄░  ░▀▀▄░█/█░" << endl;
+                    cout << "░░░▀░▀░  ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀░   ░▀░▀░▀░▀░▀░▀░  ░░░░░  ░▀▀░░░▀░░" << endl;
                     cin >> izborVpolja;
                     if (izborVpolja == 0 | izborVpolja == 1 | izborVpolja == 2 | izborVpolja == 3 | izborVpolja == 4)
                     {
@@ -448,27 +448,27 @@ int main()
                     while (1)
                     {
                         clear_screen();
-                        cout << "                                            ░█▀▀░█░█░█▀█░█▀█                     ░█▀▄░█▀█░█▀▄░█▀█░█░█░▀█▀░░░░" << endl;
-                        cout << "                                            ░▀▀█░█▀█░█░█░█▀▀                     ░█▀▄░█░█░█░█░█░█░█░█░░█░░░▀░" << endl;
-                        cout << "                                            ░▀▀▀░▀░▀░▀▀▀░▀░░                     ░▀▀░░▀▀▀░▀▀░░▀▀▀░░▀░░▀▀▀░░▀░   ";
+                        cout << "                                            ░█▀▀░█░█░█▀█░█▀█░                     ░█▀▄░█▀█░█▀▄░█▀█░█░█░▀█▀░░░░" << endl;
+                        cout << "                                            ░▀▀█░█▀█░█░█░█▀▀░                     ░█▀▄░█░█░█░█░█░█░█░█░░█░░░▀░" << endl;
+                        cout << "                                            ░▀▀▀░▀░▀░▀▀▀░▀░░░                     ░▀▀░░▀▀▀░▀▀░░▀▀▀░░▀░░▀▀▀░░▀░   ";
                         cout << ukupanBrojPogodenih << endl;
                         cout << "-------------------------------------------------------------------------------------------------------------------" << endl;
                         cout << endl
-                             << "░▀█░░░░  ░█▀█░█▀█░█░░░▀▀█░█▀▀░   ░█░█░█░█░█░█  ░░░░░  ░█▀▀░░░░░" << endl;
-                        cout << "░░█░░░░  ░█▀▀░█░█░█░░░░░█░█▀▀░   ░▀▀█░▄▀▄░▀▀█  ░▄▄▄░  ░█▀█░░░░░" << endl;
-                        cout << "░▀▀▀░▀░  ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀░   ░░░▀░▀░▀░░░▀  ░░░░░  ░▀▀▀░░░░░" << endl;
+                             << "░▀█░░░░  ░█▀█░█▀█░█░░░▀▀█░█▀▀░   ░█░█░█░█░█░█░  ░░░░░  ░█▀▀░░░░░" << endl;
+                        cout << "░░█░░░░  ░█▀▀░█░█░█░░░░░█░█▀▀░   ░▀▀█░▄▀▄░▀▀█░  ░▄▄▄░  ░█▀█░░░░░" << endl;
+                        cout << "░▀▀▀░▀░  ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀░   ░░░▀░▀░▀░░░▀░  ░░░░░  ░▀▀▀░░░░░" << endl;
                         cout << endl
-                             << "░▀▀▄░░░  ░█▀█░█▀█░█░░░▀▀█░█▀▀░   ░█▀▀░█░█░█▀▀  ░░░░░  ░▀█░░▀▀▄░" << endl;
-                        cout << "░▄▀░░░░  ░█▀▀░█░█░█░░░░░█░█▀▀░   ░▀▀▄░▄▀▄░▀▀▄  ░▄▄▄░  ░░█░░▄▀░░" << endl;
-                        cout << "░▀▀▀░▀░  ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀░   ░▀▀░░▀░▀░▀▀░  ░░░░░  ░▀▀▀░▀▀▀░" << endl;
+                             << "░▀▀▄░░░  ░█▀█░█▀█░█░░░▀▀█░█▀▀░   ░█▀▀░█░█░█▀▀░  ░░░░░  ░▀█░░▀▀▄░" << endl;
+                        cout << "░▄▀░░░░  ░█▀▀░█░█░█░░░░░█░█▀▀░   ░▀▀▄░▄▀▄░▀▀▄░  ░▄▄▄░  ░░█░░▄▀░░" << endl;
+                        cout << "░▀▀▀░▀░  ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀░   ░▀▀░░▀░▀░▀▀░░  ░░░░░  ░▀▀▀░▀▀▀░" << endl;
                         cout << endl
-                             << "░▀▀█░░░  ░█▀█░█▀█░█░░░▀▀█░█▀▀░   ░▀▀█░█░█░▀▀█  ░░░░░  ░▀▀▄░▄▀▄░" << endl;
-                        cout << "░░▀▄░░░  ░█▀▀░█░█░█░░░░░█░█▀▀░   ░▄▀░░▄▀▄░▄▀░  ░▄▄▄░  ░▄▀░░█/█░" << endl;
-                        cout << "░▀▀░░▀░  ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀░   ░▀░░░▀░▀░▀░░  ░░░░░  ░▀▀▀░░▀░░" << endl;
+                             << "░▀▀█░░░  ░█▀█░█▀█░█░░░▀▀█░█▀▀░   ░▀▀█░█░█░▀▀█░  ░░░░░  ░▀▀▄░▄▀▄░" << endl;
+                        cout << "░░▀▄░░░  ░█▀▀░█░█░█░░░░░█░█▀▀░   ░▄▀░░▄▀▄░▄▀░░  ░▄▄▄░  ░▄▀░░█/█░" << endl;
+                        cout << "░▀▀░░▀░  ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀░   ░▀░░░▀░▀░▀░░░  ░░░░░  ░▀▀▀░░▀░░" << endl;
                         cout << endl
-                             << "░█░█░░░  ░█▀█░█▀█░█░░░▀▀█░█▀▀░   ░░░░░█░█░░░░  ░░░░░  ░█▀▀░▄▀▄░" << endl;
-                        cout << "░▀▀█░░░  ░█▀▀░█░█░█░░░░░█░█▀▀░   ░█▀█░▄▀▄░█▀█  ░▄▄▄░  ░▀▀▄░█/█░" << endl;
-                        cout << "░░░▀░▀░  ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀░   ░▀░▀░▀░▀░▀░▀  ░░░░░  ░▀▀░░░▀░░" << endl;
+                             << "░█░█░░░  ░█▀█░█▀█░█░░░▀▀█░█▀▀░   ░░░░░█░█░░░░░  ░░░░░  ░█▀▀░▄▀▄░" << endl;
+                        cout << "░▀▀█░░░  ░█▀▀░█░█░█░░░░░█░█▀▀░   ░█▀█░▄▀▄░█▀█░  ░▄▄▄░  ░▀▀▄░█/█░" << endl;
+                        cout << "░░░▀░▀░  ░▀░░░▀▀▀░▀▀▀░▀▀░░▀▀▀░   ░▀░▀░▀░▀░▀░▀░  ░░░░░  ░▀▀░░░▀░░" << endl;
                         cout << endl
                              << "░█░█░█▀▀░█░░░▀█▀░█▀▀░▀█▀░█▀█░█▀█░░░█▀█░█▀█░█░░░▀▀█░█▀█░░░░" << endl;
                         cout << "░█░█░█▀▀░█░░░░█░░█░░░░█░░█░█░█▀█░░░█▀▀░█░█░█░░░░░█░█▀█░░▀░" << endl;
@@ -518,6 +518,7 @@ int main()
         }
         else if (izbor == 0)
         {
+            brIgraca++;
             clear_screen();
             break;
         }
