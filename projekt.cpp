@@ -6,7 +6,6 @@
 #include <ctime>
 
 #include <windows.h>
-#include <unistd.h>
 
 #include <conio.h>
 
@@ -188,166 +187,88 @@ int main()
                     cout << endl;
                 }
 
-                unsigned long long int pogadanjeR, pogadanjeC;
-                cout << "Unesite redak:  ";
-                cin >> pogadanjeR;
-                cout << "Unesite stupac: ";
-                cin >> pogadanjeC;
-
+                unsigned long long int pogadanjeR = n/2, pogadanjeC = n/2;
+                unsigned long long int selektor;
                 unsigned long long int pogadanje;
-                if (pogadanjeR >= 0 && pogadanjeR < n && pogadanjeC >= 0 && pogadanjeC < n)
-                {
-                    pogadanje = polje[pogadanjeR][pogadanjeC];
-                }
-
-                brPogodenih = 0;
-
-                if (pogadanjeR >= 0 && pogadanjeR < n && pogadanjeC >= 0 && pogadanjeC < n)
-                {
-                    if (praznoPolje[pogadanjeR][pogadanjeC] == 0)
-                    {
-                        praznoPolje[pogadanjeR][pogadanjeC] = 1;
-                        if (pogadanje != bomba)
+                char kontrola = getch(); 
+                // getch kontrola :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+                while(1){
+                    if(kontrola == 'i'){
+                        
+                        if (pogadanjeR >= 0 && pogadanjeR < n && pogadanjeC >= 0 && pogadanjeC < n)
                         {
-                            brPogodenih++;
-                            clear_screen();
+                            pogadanje = polje[pogadanjeR][pogadanjeC];
                         }
-                        else
+
+                        brPogodenih = 0;
+
+                        if (pogadanjeR >= 0 && pogadanjeR < n && pogadanjeC >= 0 && pogadanjeC < n)
                         {
-                            praznoPolje[pogadanjeR][pogadanjeC] = 6;
-                            clear_screen();
-                            cout << "Bomba je pronađena!" << " " << brPogodenih << endl;
-                            for (int i = 0; i < n; i++)
+                            if (praznoPolje[pogadanjeR][pogadanjeC] == 0)
                             {
-                                for (int j = 0; j < n; j++)
+                                praznoPolje[pogadanjeR][pogadanjeC] = 1;
+                                    if (pogadanje != bomba)
                                 {
-                                    cout << praznoPolje[i][j] << "  ";
+                                    brPogodenih++;
+                                    clear_screen();
                                 }
-                                cout << endl;
-                            }
-                            getch();
-                            clear_screen();
-                        }
-                    }
-                    if (pogadanje != bomba)
-                    {
-                        cout << endl;
-                        for (int i = 0; i < n; i++)
-                        {
-                            for (int j = 0; j < n; j++)
-                            {
-                                cout << praznoPolje[i][j] << "  ";
-                            }
-                            cout << endl;
-                        }
-                    }
-                }
-                else
-                {
-                    clear_screen();
-                    cout << "Upisane koordinate se ne nalaze u polju! :)" << endl;
-                    for (int i = 0; i < n; i++)
-                    {
-                        for (int j = 0; j < n; j++)
-                        {
-                            cout << praznoPolje[i][j] << "  "; // ispisuje polje nakon prvog unosa kordinata koje se ne nalaze u polju
-                        }
-                        cout << endl;
-                    }
-                }
-                while (pogadanje != bomba)
-                {
-                    cout << "Bomba nije pronađena!" << endl;
-                    cout << "Unesite redak:  ";
-                    cin >> pogadanjeR;
-                    cout << "Unesite stupac: ";
-                    cin >> pogadanjeC;
-
-                    if (pogadanjeR >= 0 && pogadanjeR < n && pogadanjeC >= 0 && pogadanjeC < n)
-                    {
-                        pogadanje = polje[pogadanjeR][pogadanjeC];
-                    }
-
-                    if (pogadanjeR >= 0 && pogadanjeR < n && pogadanjeC >= 0 && pogadanjeC < n)
-                    {
-                        if (praznoPolje[pogadanjeR][pogadanjeC] == 0)
-                        {
-                            praznoPolje[pogadanjeR][pogadanjeC] = 1;
-                            if (pogadanje != bomba)
-                            {
-                                brPogodenih++;
-
-                                clear_screen();
-                                if (brPogodenih == n * n - 1)
+                                else
                                 {
-                                    cout << "Dobili ste maksimalan broj bodova! :)" << " " << brPogodenih << endl;
-
-                                    ukupanBrojPogodenih += brPogodenih;
-
+                                    praznoPolje[pogadanjeR][pogadanjeC] = 6;
+                                    clear_screen();
+                                    cout << "Bomba je pronađena!" << " " << brPogodenih << endl;
                                     for (int i = 0; i < n; i++)
                                     {
                                         for (int j = 0; j < n; j++)
                                         {
-                                            cout << praznoPolje[i][j] << "  "; // ispis polja nakon dobivanja maksimalnog broja bodova
+                                            cout << praznoPolje[i][j] << "  ";
                                         }
                                         cout << endl;
                                     }
                                     getch();
                                     clear_screen();
-                                    break;
                                 }
                             }
-                            else
+                            if (pogadanje != bomba)
                             {
-                                praznoPolje[pogadanjeR][pogadanjeC] = 6;
-                                clear_screen();
-                                cout << "Bomba je pronađena!" << " " << brPogodenih << endl;
-
-                                ukupanBrojPogodenih += brPogodenih;
-
+                                cout << endl;
                                 for (int i = 0; i < n; i++)
                                 {
                                     for (int j = 0; j < n; j++)
                                     {
-                                        cout << praznoPolje[i][j] << "  "; // ispis polja nakon pronalaženja bombe
+                                        cout << praznoPolje[i][j] << "  ";
                                     }
                                     cout << endl;
                                 }
-                                getch();
-                                clear_screen();
-                                break;
                             }
                         }
                         else
                         {
                             clear_screen();
-                            cout << "Već ste upisali koordinate ovog polja! :)";
-                        }
-                        cout << endl;
-                        for (int i = 0; i < n; i++)
-                        {
-                            for (int j = 0; j < n; j++)
+                            cout << "Upisane koordinate se ne nalaze u polju! :)" << endl;
+                            for (int i = 0; i < n; i++)
                             {
-                                cout << praznoPolje[i][j] << "  "; // ispisivanje polja nakon ispravnog upisa
+                                for (int j = 0; j < n; j++)
+                                {
+                                    cout << praznoPolje[i][j] << "  "; // ispisuje polje nakon prvog unosa kordinata koje se ne nalaze u polju
+                                }
+                                cout << endl;
                             }
-                            cout << endl;
+                        }
+
+
+                        } else if(kontrola == 'a'){
+                            pogadanjeC--;
+                        } else if(kontrola == 'd'){
+                            pogadanjeC++;
+                        } else if(kontrola == 's'){
+                            pogadanjeR++;
+                        } else if(kontrola == 'w'){
+                            pogadanjeR--;
+                        } else {
+                            continue;
                         }
                     }
-                    else
-                    {
-                        clear_screen();
-                        cout << "Upisane koordinate se ne nalaze u polju! :)" << endl;
-                        for (int i = 0; i < n; i++)
-                        {
-                            for (int j = 0; j < n; j++)
-                            {
-                                cout << praznoPolje[i][j] << "  "; // ispisuje polje nakon unosa kordinata koje se ne nalaze u polju
-                            }
-                            cout << endl;
-                        }
-                    }
-                }
-            }
 
             else if (izbor == 3)
             {
