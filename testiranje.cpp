@@ -11,9 +11,10 @@ int main()
     {
         for (int j = 0; j < n; j++)
         {
-            praznoPolje[i][j] = 0;
+            praznoPolje[i][j] = 1;
         }
     }
+    praznoPolje[2][2]=6;
     for (int i = 0; i < n; i++)
     {
         cout << "  " << i + 1;
@@ -24,20 +25,12 @@ int main()
         cout << i + 1 << " ";
         for (int j = 0; j < n; j++)
         {
-            cout << praznoPolje[i][j] << "  ";
-        }
-        cout << endl;
-    }
-
-    for (int i = 0; i < n; i++)
-    {
-        cout << i + 1 << " ";
-        for (int j = 0; j < n; j++)
-        {
             if (praznoPolje[i][j]==0)
                 cout << "O" << "  ";
-            else
+            else if (praznoPolje[i][j] == 1)
                 cout << "I" << "  ";
+            else
+                cout << "6" << "  ";
         }
         cout << endl;
     }

@@ -150,7 +150,7 @@ int main()
             srand(rendom);
             int bombaR = rand() % n;
             int bombaC = rand() % n;
-            cout << bombaR+1 << " " << bombaC+1 << endl;
+            cout << bombaR + 1 << " " << bombaC + 1 << endl;
 
             int **praznoPolje = new int *[n];
             for (int i = 0; i < n; i++)
@@ -173,7 +173,12 @@ int main()
                 cout << i + 1 << " ";
                 for (int j = 0; j < n; j++)
                 {
-                    cout << praznoPolje[i][j] << "  ";
+                    if (praznoPolje[i][j] == 0)
+                        cout << "O" << "  ";
+                    else if (praznoPolje[i][j] == 1)
+                        cout << "I" << "  ";
+                    else
+                        cout << "6" << "  ";
                 }
                 cout << endl;
             }
@@ -209,7 +214,12 @@ int main()
                             cout << i + 1 << " ";
                             for (int j = 0; j < n; j++)
                             {
-                                cout << praznoPolje[i][j] << "  ";
+                                if (praznoPolje[i][j] == 0)
+                                    cout << "O" << "  ";
+                                else if (praznoPolje[i][j] == 1)
+                                    cout << "I" << "  ";
+                                else
+                                    cout << "6" << "  ";
                             }
                             cout << endl;
                         }
@@ -229,7 +239,12 @@ int main()
                             cout << i + 1 << " ";
                             for (int j = 0; j < n; j++)
                             {
-                                cout << praznoPolje[i][j] << "  ";
+                                if (praznoPolje[i][j] == 0)
+                                    cout << "O" << "  ";
+                                else if (praznoPolje[i][j] == 1)
+                                    cout << "I" << "  ";
+                                else
+                                    cout << "6" << "  ";
                             }
                             cout << endl;
                         }
@@ -253,7 +268,12 @@ int main()
                     cout << i + 1 << " ";
                     for (int j = 0; j < n; j++)
                     {
-                        cout << praznoPolje[i][j] << "  "; // ispisuje polje nakon prvog unosa kordinata koje se ne nalaze u polju
+                        if (praznoPolje[i][j] == 0)
+                            cout << "O" << "  ";
+                        else if (praznoPolje[i][j] == 1)
+                            cout << "I" << "  ";
+                        else
+                            cout << "6" << "  ";
                     }
                     cout << endl;
                 }
@@ -299,7 +319,12 @@ int main()
                                     cout << i + 1 << " ";
                                     for (int j = 0; j < n; j++)
                                     {
-                                        cout << praznoPolje[i][j] << "  "; // ispis polja nakon dobivanja maksimalnog broja bodova
+                                        if (praznoPolje[i][j] == 0)
+                                            cout << "O" << "  ";
+                                        else if (praznoPolje[i][j] == 1)
+                                            cout << "I" << "  ";
+                                        else
+                                            cout << "6" << "  ";
                                     }
                                     cout << endl;
                                 }
@@ -332,7 +357,12 @@ int main()
                                 cout << i + 1 << " ";
                                 for (int j = 0; j < n; j++)
                                 {
-                                    cout << praznoPolje[i][j] << "  "; // ispis polja nakon pronalaženja bombe
+                                    if (praznoPolje[i][j] == 0)
+                                        cout << "O" << "  ";
+                                    else if (praznoPolje[i][j] == 1)
+                                        cout << "I" << "  ";
+                                    else
+                                        cout << "6" << "  ";
                                 }
                                 cout << endl;
                             }
@@ -358,7 +388,12 @@ int main()
                         cout << i + 1 << " ";
                         for (int j = 0; j < n; j++)
                         {
-                            cout << praznoPolje[i][j] << "  "; // ispisivanje polja nakon ispravnog upisa
+                            if (praznoPolje[i][j] == 0)
+                                cout << "O" << "  ";
+                            else if (praznoPolje[i][j] == 1)
+                                cout << "I" << "  ";
+                            else
+                                cout << "6" << "  ";
                         }
                         cout << endl;
                     }
@@ -377,7 +412,12 @@ int main()
                         cout << i + 1 << " ";
                         for (int j = 0; j < n; j++)
                         {
-                            cout << praznoPolje[i][j] << "  "; // ispisuje polje nakon unosa kordinata koje se ne nalaze u polju
+                            if (praznoPolje[i][j] == 0)
+                                cout << "O" << "  ";
+                            else if (praznoPolje[i][j] == 1)
+                                cout << "I" << "  ";
+                            else
+                                cout << "6" << "  ";
                         }
                         cout << endl;
                     }
