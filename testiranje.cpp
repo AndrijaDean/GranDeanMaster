@@ -1,66 +1,26 @@
 #include <iostream>
+#include <ctime>
+#include <conio.h>
+
 using namespace std;
 int main()
 {
-    int n{39};
-    int **praznoPolje = new int *[n];
-    for (int i = 0; i < n; i++)
-        praznoPolje[i] = new int[n];
+    int rendom = time(0);
+    srand(rendom);
+    int gol1 = rand() % 5;
+    int g1 = gol1;
+    int gol2 = rand() % 5;
+    int g2 = gol2;
 
-    for (int i = 0; i < n; i++)
+    while (gol1 == g1 || gol2 == g2)
     {
-        for (int j = 0; j < n; j++)
-        {
-            praznoPolje[i][j] = 0;
-        }
-    }
-    praznoPolje[2][2] = 6;
-    praznoPolje[3][2] = 1;
-    praznoPolje[2][1] = 1;
-    praznoPolje[0][0] = 1;
-    praznoPolje[0][3] = 1;
-    praznoPolje[1][1] = 5;
-
-    cout << endl
-         << "  ";
-    for (int i = 0; i < n; i++)
-    {
-        if (i < 10)
-        {
-            cout << " ";
-        }
-        cout << "  " << i + 1;
-    }
-    cout << endl
-         << endl;
-
-    for (int i = 0; i < n; i++)
-    {
-        cout << i + 1 << "  ";
-        if (i <= 8)
-        {
-            cout << " ";
-        }
-        for (int j = 0; j < n; j++)
-        {
-            if (j < 10)
-            {
-                cout << " ";
-            }
-            else
-            {
-                cout << " ";
-            }
-            if (praznoPolje[i][j] == 0)
-                cout << "O" << "  ";
-            else if (praznoPolje[i][j] == 1)
-                cout << "I" << "  ";
-            else if (praznoPolje[i][j] == 5)
-                cout << "★" << "  ";
-            else
-                cout << "6" << "  ";
-        }
-        cout << endl;
+        
+        cout << gol1<<endl;
+        cout << gol2 << endl
+             << endl;
+        gol1 = rand() % 5;
+        gol2 = rand() % 5;
+        getch();
     }
     return 0;
 }

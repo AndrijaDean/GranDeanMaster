@@ -63,6 +63,9 @@ int main()
     int brIgraca = 0;
     cin.getline(igraci[brIgraca].imeIgraca, 50);
     igraci[brIgraca].imeIgraca;
+    ofstream inDatoteka("leaderboard.bin", ios::binary | ios::app | ios::out);
+    inDatoteka.write((char *)&igraci[brIgraca], sizeof(Igrac));
+    inDatoteka.close();
 
     clear_screen();
 
@@ -282,6 +285,12 @@ int main()
                         praznoPolje[pogadanjeR][pogadanjeC] = 6;
                         clear_screen();
                         cout << "Bomba je pronađena!" << " " << brPogodenih;
+
+                        igraci[brIgraca].bodoviIgraca = ukupanBrojPogodenih;
+                        ofstream inDatoteka("leaderboard.bin", ios::binary | ios::app | ios::out);
+                        inDatoteka.write((char *)&igraci[brIgraca], sizeof(Igrac));
+                        inDatoteka.close();
+                        
                         cout << endl
                              << "  ";
                         for (int i = 0; i < n; i++)
@@ -450,10 +459,10 @@ int main()
 
                             ukupanBrojPogodenih += brPogodenih;
 
-                            /*igraci[brIgraca].bodoviIgraca = ukupanBrojPogodenih;
+                            igraci[brIgraca].bodoviIgraca = ukupanBrojPogodenih;
                             ofstream inDatoteka("leaderboard.bin", ios::binary | ios::app | ios::out);
                             inDatoteka.write((char *)&igraci[brIgraca], sizeof(Igrac));
-                            inDatoteka.close();*/
+                            inDatoteka.close();
 
                             cout << endl
                                  << "  ";
@@ -513,10 +522,10 @@ int main()
 
                                 ukupanBrojPogodenih += brPogodenih;
 
-                                /*igraci[brIgraca].bodoviIgraca = ukupanBrojPogodenih;
+                                igraci[brIgraca].bodoviIgraca = ukupanBrojPogodenih;
                                 ofstream inDatoteka("leaderboard.bin", ios::binary | ios::app | ios::out);
                                 inDatoteka.write((char *)&igraci[brIgraca], sizeof(Igrac));
-                                inDatoteka.close();*/
+                                inDatoteka.close();
 
                                 cout << endl
                                      << "  ";
@@ -827,10 +836,10 @@ int main()
                 }
                 else if (izborVpolja == 0)
                 {
-                    /*igraci[brIgraca].bodoviIgraca = ukupanBrojPogodenih;
+                    igraci[brIgraca].bodoviIgraca = ukupanBrojPogodenih;
                     ofstream inDatoteka("leaderboard.bin", ios::binary | ios::app | ios::out);
                     inDatoteka.write((char *)&igraci[brIgraca], sizeof(Igrac));
-                    inDatoteka.close();*/
+                    inDatoteka.close();
                     clear_screen();
                     break;
                 }
@@ -859,9 +868,5 @@ int main()
             clear_screen();
         }
     }
-    igraci[brIgraca].bodoviIgraca = ukupanBrojPogodenih;
-    ofstream inDatoteka("leaderboard.bin", ios::binary | ios::app | ios::out);
-    inDatoteka.write((char *)&igraci[brIgraca], sizeof(Igrac));
-    inDatoteka.close();
     return 0;
 }
