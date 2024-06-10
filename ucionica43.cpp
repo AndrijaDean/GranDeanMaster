@@ -6,7 +6,6 @@
 #include <ctime>
 
 #include <windows.h>
-#include <unistd.h>
 
 #include <conio.h>
 
@@ -98,7 +97,7 @@ int main()
     clear_screen();
 
     unsigned long long int n{3};
-    unsigned long long int velicinaTrenutnigPolja{0};
+    unsigned long long int izborN{0};
     unsigned long long int izbor;
     unsigned long long int brPogodenihTokomIgre = 0;
     unsigned long long int ukupanBrojPogodenih = 0;
@@ -129,7 +128,7 @@ int main()
             else
             {
                 cout << "Neispravan unos!";
-                sleep(1);
+                Sleep(1);
                 clear_screen();
             }
         }
@@ -167,7 +166,7 @@ int main()
                 if (!(izboPostavki != 0 || izboPostavki != 1 || izboPostavki != 2 || izboPostavki != 3))
                 {
                     cout << "Neispravan unos!";
-                    sleep(1);
+                    Sleep(1);
                     clear_screen();
                     goto postavke;
                 }
@@ -175,9 +174,9 @@ int main()
                 {
                     clear_screen();
                     cout << endl
-                         << "                                ░█░░░█▀▀░█▀█░█▀▄░█▀▀░█▀▄░█▀▄░█▀█░█▀█░█▀▄░█▀▄░░░▀█░░                         " << endl;
-                    cout << "                                ░█░░░█▀▀░█▀█░█░█░█▀▀░█▀▄░█▀▄░█░█░█▀█░█▀▄░█░█░░░░█░░                         " << endl;
-                    cout << "                                ░▀▀▀░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀░▀░▀▀░░░░▀▀▀░                         " << endl
+                         << "                                ░█░░░█▀▀░█▀█░█▀▄░█▀▀░█▀▄░█▀▄░█▀█░█▀█░█▀▄░█▀▄░░░▀█░░                             " << endl;
+                    cout << "                                ░█░░░█▀▀░█▀█░█░█░█▀▀░█▀▄░█▀▄░█░█░█▀█░█▀▄░█░█░░░░█░░                             " << endl;
+                    cout << "                                ░▀▀▀░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀░▀░▀▀░░░░▀▀▀░                             " << endl
                          << endl;
                     cout << "------------------------------------------------------------------------------------------------------------" << endl;
                     getch();
@@ -186,9 +185,9 @@ int main()
                 {
                     clear_screen();
                     cout << endl
-                         << "                                ░█░░░█▀▀░█▀█░█▀▄░█▀▀░█▀▄░█▀▄░█▀█░█▀█░█▀▄░█▀▄░░░▀▀▄░                         " << endl;
-                    cout << "                                ░█░░░█▀▀░█▀█░█░█░█▀▀░█▀▄░█▀▄░█░█░█▀█░█▀▄░█░█░░░▄▀░░                         " << endl;
-                    cout << "                                ░▀▀▀░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀░▀░▀▀░░░░▀▀▀░                         " << endl
+                         << "                                ░█░░░█▀▀░█▀█░█▀▄░█▀▀░█▀▄░█▀▄░█▀█░█▀█░█▀▄░█▀▄░░░▀▀▄░                             " << endl;
+                    cout << "                                ░█░░░█▀▀░█▀█░█░█░█▀▀░█▀▄░█▀▄░█░█░█▀█░█▀▄░█░█░░░▄▀░░                             " << endl;
+                    cout << "                                ░▀▀▀░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀░▀░▀▀░░░░▀▀▀░                             " << endl
                          << endl;
                     cout << "------------------------------------------------------------------------------------------------------------" << endl;
                     getch();
@@ -197,19 +196,19 @@ int main()
                 {
                     clear_screen();
                     cout << endl
-                         << "                                ░█▀▄░█░█░█░░░█▀▀░█▀▀░                                                       " << endl;
-                    cout << "                                ░█▀▄░█░█░█░░░█▀▀░▀▀█░                                                       " << endl;
-                    cout << "                                ░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░                                                       " << endl
+                         << "                                ░█▀▄░█░█░█░░░█▀▀░█▀▀░                             " << endl;
+                    cout << "                                ░█▀▄░█░█░█░░░█▀▀░▀▀█░                             " << endl;
+                    cout << "                                ░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░                             " << endl
                          << endl;
                     cout << "------------------------------------------------------------------------------------------------------------" << endl;
-                    cout << "                - Koordinate se upisuju pomoću brojeva koje se nalaze iznad i s lijeve strane tablice.      " << endl;
-                    cout << "                - Za izlazak iz izbornika odaberite broj nula (0)                                           " << endl;
+                    cout << "                - Koordinate se upisuju pomoću brojeva koje se nalaze iznad i s lijeve strane tablice.       " << endl;
+                    cout << "                - Za izlazak iz ozbornika odaberite broj nula (0)                                            " << endl;
 
                     cout << " KAZALO OBLIKA:                                                                                             " << endl;
-                    cout << "              O - Polje koje još niste otvorili.                                                            " << endl;
-                    cout << "              I - Otvoreno polje donosi jedan bod.                                                          " << endl;
-                    cout << "              X - Otvorili ste bombu tj. igra završava .                                                    " << endl;
-                    cout << "              ★ - Otvoreno polje donosi ekstra bodove (5 bodova).                                           " << endl;
+                    cout << "              O - Polje koje još niste otvorili.                                                           " << endl;
+                    cout << "              I - Otvoreno polje donosi jedan bod.                                                         " << endl;
+                    cout << "              X - Otvorili ste bombu tj. igra završava .                                                   " << endl;
+                    cout << "              ★ - Otvoreno polje donosi ekstra bodove (5 bodova).                                          " << endl;
                     getch();
                 }
                 else if (izboPostavki == 0)
@@ -436,7 +435,7 @@ int main()
                     else
                     {
                         cout << "Neispravan unos!";
-                        sleep(1);
+                        Sleep(1);
                         clear_screen();
                         break;
                     }
@@ -447,13 +446,13 @@ int main()
                     if (n == 4)
                     {
                         cout << "Već ste kupili ovo polje!";
-                        sleep(1);
+                        Sleep(1);
                         clear_screen();
                     }
                     else
                     {
                         n = 4;
-                        sleep(1);
+                        Sleep(1);
                         ukupanBrojPogodenih -= 6;
                         clear_screen();
                         break;
@@ -464,13 +463,13 @@ int main()
                     if (n == 5)
                     {
                         cout << "Već ste kupili ovo polje!";
-                        sleep(1);
+                        Sleep(1);
                         clear_screen();
                     }
                     else
                     {
                         n = 5;
-                        sleep(1);
+                        Sleep(1);
                         ukupanBrojPogodenih -= 12;
                         clear_screen();
                         break;
@@ -481,13 +480,13 @@ int main()
                     if (n == 7)
                     {
                         cout << "Već ste kupili ovo polje!";
-                        sleep(1);
+                        Sleep(1);
                         clear_screen();
                     }
                     else
                     {
                         n = 7;
-                        sleep(1);
+                        Sleep(1);
                         ukupanBrojPogodenih -= 20;
                         clear_screen();
                         break;
@@ -526,26 +525,26 @@ int main()
                             cout << "░█░█░█▀▀░█░░░░█░░█░░░░█░░█░█░█▀█░░░█▀▀░█░█░█░░░░░█░█▀█░░▀░" << endl;
                             cout << "░░▀░░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀░▀░░░▀░░░▀▀▀░▀▀▀░▀▀░░▀░▀░░▀░   ";
 
-                            cin >> velicinaTrenutnigPolja;
-                            if (velicinaTrenutnigPolja > 40)
+                            cin >> izborN;
+                            if (izborN > 40)
                             {
                                 cout << "Kupili ste pre veliko polje!";
-                                velicinaTrenutnigPolja = 0;
-                                sleep(1);
+                                izborN = 0;
+                                Sleep(1);
                             }
                             else
                             {
                                 break;
                             }
                         }
-                        if (n == velicinaTrenutnigPolja)
+                        if (n == izborN)
                         {
                             cout << "Već ste kupili ovo polje!";
-                            sleep(1);
+                            Sleep(1);
                             clear_screen();
                         }
 
-                        else if (velicinaTrenutnigPolja == 0 || velicinaTrenutnigPolja == 1)
+                        else if (izborN == 0 || izborN == 1)
                         {
                             clear_screen();
                             break;
@@ -553,8 +552,8 @@ int main()
 
                         else
                         {
-                            n = velicinaTrenutnigPolja;
-                            sleep(1);
+                            n = izborN;
+                            Sleep(1);
                             ukupanBrojPogodenih -= 50;
                             clear_screen();
                             break;
@@ -574,7 +573,7 @@ int main()
                 else if (izborVpolja == 1 || izborVpolja == 2 || izborVpolja == 3 || izborVpolja == 4 && ukupanBrojPogodenih < 50)
                 {
                     cout << "Nemate dovoljan broj bodova!";
-                    sleep(1);
+                    Sleep(1);
                     clear_screen();
                 }
                 else
