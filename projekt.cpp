@@ -98,11 +98,15 @@ int main()
     clear_screen();
 
     unsigned long long int n{3};
-    unsigned long long int velicinaTrenutnigPolja{0};
+    unsigned long long int velicinaZeljenogPolja{0};
     unsigned long long int izbor;
     unsigned long long int brPogodenihTokomIgre = 0;
     unsigned long long int ukupanBrojPogodenih = 0;
     unsigned long long int pogadanjeR, pogadanjeC;
+    int *poljeVelicinaPolja = new int[40];
+    for (int i = 0; i < 40; i++)
+        poljeVelicinaPolja[i] = 0;
+    poljeVelicinaPolja[1] = 3;
 
     while (1)
     {
@@ -145,7 +149,6 @@ int main()
                 cout << "                                ░▀▀█░█▀▀░░█░░░█░░░█░░█░█░█░█░▀▀█░" << endl;
                 cout << "                                ░▀▀▀░▀▀▀░░▀░░░▀░░▀▀▀░▀░▀░▀▀▀░▀▀▀░" << endl
                      << endl;
-
                 cout << "------------------------------------------------------------------------------------------------------------" << endl;
 
                 cout << endl
@@ -180,6 +183,30 @@ int main()
                     cout << "                                ░▀▀▀░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀░▀░▀▀░░░░▀▀▀░                         " << endl
                          << endl;
                     cout << "------------------------------------------------------------------------------------------------------------" << endl;
+                    /*ifstream inDatoteka("leaderboard.bin", ios::binary | ios::out);
+            int citac = 0;
+            while (inDatoteka.read((char *)&igraci[citac], sizeof(Igrac)))
+            {
+                citac++;
+            }
+            inDatoteka.close();
+
+            sort(igraci, igraci + citac, cmpp);
+
+            for (int i = 0; i < citac; i++)
+            {
+                cout << "                                  " << i + 1 << ".               ";
+                cout << igraci[i].imeIgraca << " " << igraci[i].bodoviIgraca << endl;
+            }
+            getch();
+            clear_screen();*/
+                    /*cout << endl
+                         << endl
+                         << "              Error 404"
+                         << endl
+                         << endl
+                         << "Leaderboard is temporarily unavailable." << endl;*/
+                    // sleep(5);
                     getch();
                 }
                 else if (izboPostavki == 2)
@@ -218,40 +245,41 @@ int main()
                     break;
                 }
             }
-            /*clear_screen();
-            cout << endl
-                 << "                                  ░█░░░█▀▀░█▀█░█▀▄░█▀▀░█▀▄░█▀▄░█▀█░█▀█░█▀▄░█▀▄░                             " << endl;
-            cout << "                                  ░█░░░█▀▀░█▀█░█░█░█▀▀░█▀▄░█▀▄░█░█░█▀█░█▀▄░█░█░                             " << endl;
-            cout << "                                  ░▀▀▀░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀░▀░▀▀░░                             " << endl
-                 << endl;
-            cout << "------------------------------------------------------------------------------------------------------------" << endl;
-            ifstream inDatoteka("leaderboard.bin", ios::binary | ios::out);
-            int citac = 0;
-            while (inDatoteka.read((char *)&igraci[citac], sizeof(Igrac)))
-            {
-                citac++;
-            }
-            inDatoteka.close();
-
-            sort(igraci, igraci + citac, cmpp);
-
-            for (int i = 0; i < citac; i++)
-            {
-                cout << "                                  " << i + 1 << ".               ";
-                cout << igraci[i].imeIgraca << " " << igraci[i].bodoviIgraca << endl;
-            }
-            getch();
-            clear_screen();*/
-            /*cout << endl
-                 << endl
-                 << "              Error 404"
-                 << endl
-                 << endl
-                 << "Leaderboard is temporarily unavailable." << endl;*/
-            // sleep(5);
         }
         else if (izbor == 1)
         {
+        playVelicinaPolja:
+            while (1)
+            {
+                int velicinaPolja;
+                clear_screen();
+                cout << endl
+                     << "                                ░█▀▀░█▀▀░▀█▀░▀█▀░▀█▀░█▀█░█▀▀░█▀▀░" << endl;
+                cout << "                                ░▀▀█░█▀▀░░█░░░█░░░█░░█░█░█░█░▀▀█░" << endl;
+                cout << "                                ░▀▀▀░▀▀▀░░▀░░░▀░░▀▀▀░▀░▀░▀▀▀░▀▀▀░" << endl
+                     << endl;
+                cout << "------------------------------------------------------------------------------------------------------------" << endl
+                     << endl;
+                cout << "░█░█░█▀▀░█░░░▀█▀░█▀▀░▀█▀░█▀█░█▀█░░░█▀█░█▀█░█░░░▀▀█░█▀█░░░░" << endl;
+                cout << "░█░█░█▀▀░█░░░░█░░█░░░░█░░█░█░█▀█░░░█▀▀░█░█░█░░░░░█░█▀█░░▀░" << endl;
+                cout << "░░▀░░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀░▀░░░▀░░░▀▀▀░▀▀▀░▀▀░░▀░▀░░▀░ ";
+                cin >> velicinaPolja;
+                velicinaPolja -= 2;
+                if (poljeVelicinaPolja[velicinaPolja] == 0 || velicinaPolja < 0)
+                {
+                    cout << "Niste još kupili ovo polje.";
+                    sleep(1);
+                    clear_screen();
+                    goto playVelicinaPolja;
+                    n = 3;
+                }
+                else
+                {
+                    n = poljeVelicinaPolja[velicinaPolja];
+                    break;
+                }
+            }
+
             clear_screen();
             int **praznoPolje = new int *[n];
             for (int i = 0; i < n; i++)
@@ -456,6 +484,7 @@ int main()
                         sleep(1);
                         ukupanBrojPogodenih -= 6;
                         clear_screen();
+                        poljeVelicinaPolja[n - 2] = n;
                         break;
                     }
                 }
@@ -473,6 +502,7 @@ int main()
                         sleep(1);
                         ukupanBrojPogodenih -= 12;
                         clear_screen();
+                        poljeVelicinaPolja[n - 2] = n;
                         break;
                     }
                 }
@@ -490,6 +520,7 @@ int main()
                         sleep(1);
                         ukupanBrojPogodenih -= 20;
                         clear_screen();
+                        poljeVelicinaPolja[n - 2] = n;
                         break;
                     }
                 }
@@ -526,11 +557,11 @@ int main()
                             cout << "░█░█░█▀▀░█░░░░█░░█░░░░█░░█░█░█▀█░░░█▀▀░█░█░█░░░░░█░█▀█░░▀░" << endl;
                             cout << "░░▀░░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀░▀░░░▀░░░▀▀▀░▀▀▀░▀▀░░▀░▀░░▀░   ";
 
-                            cin >> velicinaTrenutnigPolja;
-                            if (velicinaTrenutnigPolja > 40)
+                            cin >> velicinaZeljenogPolja;
+                            if (velicinaZeljenogPolja > 40)
                             {
                                 cout << "Kupili ste pre veliko polje!";
-                                velicinaTrenutnigPolja = 0;
+                                velicinaZeljenogPolja = 0;
                                 sleep(1);
                             }
                             else
@@ -538,14 +569,14 @@ int main()
                                 break;
                             }
                         }
-                        if (n == velicinaTrenutnigPolja)
+                        if (n == velicinaZeljenogPolja)
                         {
                             cout << "Već ste kupili ovo polje!";
                             sleep(1);
                             clear_screen();
                         }
 
-                        else if (velicinaTrenutnigPolja == 0 || velicinaTrenutnigPolja == 1)
+                        else if (velicinaZeljenogPolja == 0 || velicinaZeljenogPolja == 1)
                         {
                             clear_screen();
                             break;
@@ -553,10 +584,11 @@ int main()
 
                         else
                         {
-                            n = velicinaTrenutnigPolja;
+                            n = velicinaZeljenogPolja;
                             sleep(1);
                             ukupanBrojPogodenih -= 50;
                             clear_screen();
+                            poljeVelicinaPolja[n - 2] = n;
                             break;
                         }
                     }
