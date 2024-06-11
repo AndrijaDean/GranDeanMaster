@@ -6,7 +6,6 @@
 #include <ctime>
 
 #include <windows.h>
-#include <unistd.h>
 
 #include <conio.h>
 
@@ -75,9 +74,9 @@ int main()
     ofstream outDatoteka("", ios::binary | ios::trunc);
     outDatoteka.close();
     cout << endl
-         << "                         ░█▀█░█▀▄░█▀█░█▀█░█▀█░░█▀▀▄░▀█▀░░░█░░░█▀▄░█▀█░█▄█░█▀▄░█░█░" << endl;
-    cout << "                         ░█▀▀░█▀▄░█░█░█░█░█▀█░▀█▀░█░░█░░░░▀░░░█▀▄░█░█░█░█░█▀▄░█░█░" << endl;
-    cout << "                         ░▀░░░▀░▀░▀▀▀░▀░▀░▀░▀░░▀▀▀░░▀▀▀░░░▀░░░▀▀░░▀▀▀░▀░▀░▀▀░░▀▀▀░" << endl
+         << "                            ░█▀█░█▀▄░█▀█░█▀█░█▀█░░█▀▀▄░▀█▀░░░█░░░█▀▄░█▀█░█▄█░█▀▄░█░█░" << endl;
+    cout << "                            ░█▀▀░█▀▄░█░█░█░█░█▀█░▀█▀░█░░█░░░░▀░░░█▀▄░█░█░█░█░█▀▄░█░█░" << endl;
+    cout << "                            ░▀░░░▀░▀░▀▀▀░▀░▀░▀░▀░░▀▀▀░░▀▀▀░░░▀░░░▀▀░░▀▀▀░▀░▀░▀▀░░▀▀▀░" << endl
          << endl;
 
     cout << "------------------------------------------------------------------------------------------------------------" << endl;
@@ -101,7 +100,7 @@ int main()
     unsigned long long int velicinaZeljenogPolja{0};
     unsigned long long int izbor;
     unsigned long long int brPogodenihTokomIgre = 0;
-    unsigned long long int ukupanBrojPogodenih = 0;
+    unsigned long long int ukupanBrojPogodenih = 1000;
     unsigned long long int pogadanjeR, pogadanjeC;
     int *poljeVelicinaPolja = new int[40];
     for (int i = 0; i < 40; i++)
@@ -133,7 +132,7 @@ int main()
             else
             {
                 cout << "Neispravan unos!";
-                sleep(1);
+                Sleep(1000);
                 clear_screen();
             }
         }
@@ -170,7 +169,7 @@ int main()
                 if (!(izboPostavki != 0 || izboPostavki != 1 || izboPostavki != 2 || izboPostavki != 3))
                 {
                     cout << "Neispravan unos!";
-                    sleep(1);
+                    Sleep(1000);
                     clear_screen();
                     goto postavke;
                 }
@@ -229,10 +228,8 @@ int main()
                     cout << "                                ░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░                                                       " << endl
                          << endl;
                     cout << "------------------------------------------------------------------------------------------------------------" << endl;
-                    cout << " IGRANJE:                                                                                                   " << endl;
-                    cout << "                - Za izlazak iz izbornika odaberite broj nula (0).                                          " << endl;
-                    cout << "                - Nakon odabira PLAY odabirede željenu veličinu polja.                                      " << endl;
                     cout << "                - Koordinate se upisuju pomoću brojeva koje se nalaze iznad i s lijeve strane tablice.      " << endl;
+                    cout << "                - Za izlazak iz izbornika odaberite broj nula (0)                                           " << endl;
 
                     cout << " KAZALO OBLIKA:                                                                                             " << endl;
                     cout << "              O - Polje koje još niste otvorili.                                                            " << endl;
@@ -270,7 +267,7 @@ int main()
                 if (poljeVelicinaPolja[velicinaPolja] == 0 || velicinaPolja < 0)
                 {
                     cout << "Niste još kupili ovo polje.";
-                    sleep(1);
+                    Sleep(1000);
                     clear_screen();
                     goto playVelicinaPolja;
                     n = 3;
@@ -309,7 +306,7 @@ int main()
 
             srand(time(NULL));
 
-            int brojBombi = round((n * n) / 7.0);
+            int brojBombi = round((n * n) / 9.0);
 
             for (int i = 0; i < brojBombi; i++)
             {
@@ -337,11 +334,10 @@ int main()
 
             cout << endl;
             ispisPolja(n, praznoPolje);
-            // ispisPolja(n, punoPolje);
+            //ispisPolja(n, punoPolje);
 
             do
             {
-                cout << "Bomba nije pronađena!" << endl;
                 cout << "Unesite redak:  ";
                 cin >> pogadanjeR;
                 cout << "Unesite stupac: ";
@@ -401,13 +397,12 @@ int main()
                                 ispisPolja(n, praznoPolje);
 
                                 getch();
-                                // sleep(5);
                                 clear_screen();
                                 break;
                             }
                             else
                             {
-                                cout << endl;
+                                cout << "Bomba nije pronađena!" << endl;
                             }
                         }
                     }
@@ -466,7 +461,7 @@ int main()
                     else
                     {
                         cout << "Neispravan unos!";
-                        sleep(1);
+                        Sleep(1000);
                         clear_screen();
                         break;
                     }
@@ -477,13 +472,13 @@ int main()
                     if (n == 4)
                     {
                         cout << "Već ste kupili ovo polje!";
-                        sleep(1);
+                        Sleep(1000);
                         clear_screen();
                     }
                     else
                     {
                         n = 4;
-                        sleep(1);
+                        Sleep(1000);
                         ukupanBrojPogodenih -= 6;
                         clear_screen();
                         poljeVelicinaPolja[n - 2] = n;
@@ -495,13 +490,13 @@ int main()
                     if (n == 5)
                     {
                         cout << "Već ste kupili ovo polje!";
-                        sleep(1);
+                        Sleep(1000);
                         clear_screen();
                     }
                     else
                     {
                         n = 5;
-                        sleep(1);
+                        Sleep(1000);
                         ukupanBrojPogodenih -= 12;
                         clear_screen();
                         poljeVelicinaPolja[n - 2] = n;
@@ -513,13 +508,13 @@ int main()
                     if (n == 7)
                     {
                         cout << "Već ste kupili ovo polje!";
-                        sleep(1);
+                        Sleep(1000);
                         clear_screen();
                     }
                     else
                     {
                         n = 7;
-                        sleep(1);
+                        Sleep(1000);
                         ukupanBrojPogodenih -= 20;
                         clear_screen();
                         poljeVelicinaPolja[n - 2] = n;
@@ -560,11 +555,11 @@ int main()
                             cout << "░░▀░░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀░▀░░░▀░░░▀▀▀░▀▀▀░▀▀░░▀░▀░░▀░   ";
 
                             cin >> velicinaZeljenogPolja;
-                            if (velicinaZeljenogPolja > 40)
+                            if (velicinaZeljenogPolja > 35)
                             {
                                 cout << "Kupili ste pre veliko polje!";
                                 velicinaZeljenogPolja = 0;
-                                sleep(1);
+                                Sleep(1000);
                             }
                             else
                             {
@@ -574,7 +569,7 @@ int main()
                         if (n == velicinaZeljenogPolja)
                         {
                             cout << "Već ste kupili ovo polje!";
-                            sleep(1);
+                            Sleep(1000);
                             clear_screen();
                         }
 
@@ -587,7 +582,7 @@ int main()
                         else
                         {
                             n = velicinaZeljenogPolja;
-                            sleep(1);
+                            Sleep(1000);
                             ukupanBrojPogodenih -= 50;
                             clear_screen();
                             poljeVelicinaPolja[n - 2] = n;
@@ -608,7 +603,7 @@ int main()
                 else if (izborVpolja == 1 || izborVpolja == 2 || izborVpolja == 3 || izborVpolja == 4 && ukupanBrojPogodenih < 50)
                 {
                     cout << "Nemate dovoljan broj bodova!";
-                    sleep(1);
+                    Sleep(1000);
                     clear_screen();
                 }
                 else
@@ -631,3 +626,4 @@ int main()
     }
     return 0;
 }
+

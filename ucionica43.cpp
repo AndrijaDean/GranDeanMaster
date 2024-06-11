@@ -97,11 +97,15 @@ int main()
     clear_screen();
 
     unsigned long long int n{3};
-    unsigned long long int izborN{0};
+    unsigned long long int velicinaZeljenogPolja{0};
     unsigned long long int izbor;
     unsigned long long int brPogodenihTokomIgre = 0;
     unsigned long long int ukupanBrojPogodenih = 0;
     unsigned long long int pogadanjeR, pogadanjeC;
+    int *poljeVelicinaPolja = new int[40];
+    for (int i = 0; i < 40; i++)
+        poljeVelicinaPolja[i] = 0;
+    poljeVelicinaPolja[1] = 3;
 
     while (1)
     {
@@ -144,7 +148,6 @@ int main()
                 cout << "                                ░▀▀█░█▀▀░░█░░░█░░░█░░█░█░█░█░▀▀█░" << endl;
                 cout << "                                ░▀▀▀░▀▀▀░░▀░░░▀░░▀▀▀░▀░▀░▀▀▀░▀▀▀░" << endl
                      << endl;
-
                 cout << "------------------------------------------------------------------------------------------------------------" << endl;
 
                 cout << endl
@@ -174,57 +177,12 @@ int main()
                 {
                     clear_screen();
                     cout << endl
-                         << "                                ░█░░░█▀▀░█▀█░█▀▄░█▀▀░█▀▄░█▀▄░█▀█░█▀█░█▀▄░█▀▄░░░▀█░░                             " << endl;
-                    cout << "                                ░█░░░█▀▀░█▀█░█░█░█▀▀░█▀▄░█▀▄░█░█░█▀█░█▀▄░█░█░░░░█░░                             " << endl;
-                    cout << "                                ░▀▀▀░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀░▀░▀▀░░░░▀▀▀░                             " << endl
+                         << "                                ░█░░░█▀▀░█▀█░█▀▄░█▀▀░█▀▄░█▀▄░█▀█░█▀█░█▀▄░█▀▄░░░▀█░░                         " << endl;
+                    cout << "                                ░█░░░█▀▀░█▀█░█░█░█▀▀░█▀▄░█▀▄░█░█░█▀█░█▀▄░█░█░░░░█░░                         " << endl;
+                    cout << "                                ░▀▀▀░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀░▀░▀▀░░░░▀▀▀░                         " << endl
                          << endl;
                     cout << "------------------------------------------------------------------------------------------------------------" << endl;
-                    getch();
-                }
-                else if (izboPostavki == 2)
-                {
-                    clear_screen();
-                    cout << endl
-                         << "                                ░█░░░█▀▀░█▀█░█▀▄░█▀▀░█▀▄░█▀▄░█▀█░█▀█░█▀▄░█▀▄░░░▀▀▄░                             " << endl;
-                    cout << "                                ░█░░░█▀▀░█▀█░█░█░█▀▀░█▀▄░█▀▄░█░█░█▀█░█▀▄░█░█░░░▄▀░░                             " << endl;
-                    cout << "                                ░▀▀▀░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀░▀░▀▀░░░░▀▀▀░                             " << endl
-                         << endl;
-                    cout << "------------------------------------------------------------------------------------------------------------" << endl;
-                    getch();
-                }
-                else if (izboPostavki == 3)
-                {
-                    clear_screen();
-                    cout << endl
-                         << "                                ░█▀▄░█░█░█░░░█▀▀░█▀▀░                             " << endl;
-                    cout << "                                ░█▀▄░█░█░█░░░█▀▀░▀▀█░                             " << endl;
-                    cout << "                                ░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░                             " << endl
-                         << endl;
-                    cout << "------------------------------------------------------------------------------------------------------------" << endl;
-                    cout << "                - Koordinate se upisuju pomoću brojeva koje se nalaze iznad i s lijeve strane tablice.       " << endl;
-                    cout << "                - Za izlazak iz ozbornika odaberite broj nula (0)                                            " << endl;
-
-                    cout << " KAZALO OBLIKA:                                                                                             " << endl;
-                    cout << "              O - Polje koje još niste otvorili.                                                           " << endl;
-                    cout << "              I - Otvoreno polje donosi jedan bod.                                                         " << endl;
-                    cout << "              X - Otvorili ste bombu tj. igra završava .                                                   " << endl;
-                    cout << "              ★ - Otvoreno polje donosi ekstra bodove (5 bodova).                                          " << endl;
-                    getch();
-                }
-                else if (izboPostavki == 0)
-                {
-                    clear_screen();
-                    break;
-                }
-            }
-            /*clear_screen();
-            cout << endl
-                 << "                                  ░█░░░█▀▀░█▀█░█▀▄░█▀▀░█▀▄░█▀▄░█▀█░█▀█░█▀▄░█▀▄░                             " << endl;
-            cout << "                                  ░█░░░█▀▀░█▀█░█░█░█▀▀░█▀▄░█▀▄░█░█░█▀█░█▀▄░█░█░                             " << endl;
-            cout << "                                  ░▀▀▀░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀░▀░▀▀░░                             " << endl
-                 << endl;
-            cout << "------------------------------------------------------------------------------------------------------------" << endl;
-            ifstream inDatoteka("leaderboard.bin", ios::binary | ios::out);
+                    /*ifstream inDatoteka("leaderboard.bin", ios::binary | ios::out);
             int citac = 0;
             while (inDatoteka.read((char *)&igraci[citac], sizeof(Igrac)))
             {
@@ -241,16 +199,86 @@ int main()
             }
             getch();
             clear_screen();*/
-            /*cout << endl
-                 << endl
-                 << "              Error 404"
-                 << endl
-                 << endl
-                 << "Leaderboard is temporarily unavailable." << endl;*/
-            // sleep(5);
+                    /*cout << endl
+                         << endl
+                         << "              Error 404"
+                         << endl
+                         << endl
+                         << "Leaderboard is temporarily unavailable." << endl;*/
+                    // sleep(5);
+                    getch();
+                }
+                else if (izboPostavki == 2)
+                {
+                    clear_screen();
+                    cout << endl
+                         << "                                ░█░░░█▀▀░█▀█░█▀▄░█▀▀░█▀▄░█▀▄░█▀█░█▀█░█▀▄░█▀▄░░░▀▀▄░                         " << endl;
+                    cout << "                                ░█░░░█▀▀░█▀█░█░█░█▀▀░█▀▄░█▀▄░█░█░█▀█░█▀▄░█░█░░░▄▀░░                         " << endl;
+                    cout << "                                ░▀▀▀░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀░▀░▀▀░░░░▀▀▀░                         " << endl
+                         << endl;
+                    cout << "------------------------------------------------------------------------------------------------------------" << endl;
+                    getch();
+                }
+                else if (izboPostavki == 3)
+                {
+                    clear_screen();
+                    cout << endl
+                         << "                                ░█▀▄░█░█░█░░░█▀▀░█▀▀░                                                       " << endl;
+                    cout << "                                ░█▀▄░█░█░█░░░█▀▀░▀▀█░                                                       " << endl;
+                    cout << "                                ░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░                                                       " << endl
+                         << endl;
+                    cout << "------------------------------------------------------------------------------------------------------------" << endl;
+                    cout << "                - Koordinate se upisuju pomoću brojeva koje se nalaze iznad i s lijeve strane tablice.      " << endl;
+                    cout << "                - Za izlazak iz izbornika odaberite broj nula (0)                                           " << endl;
+
+                    cout << " KAZALO OBLIKA:                                                                                             " << endl;
+                    cout << "              O - Polje koje još niste otvorili.                                                            " << endl;
+                    cout << "              I - Otvoreno polje donosi jedan bod.                                                          " << endl;
+                    cout << "              X - Otvorili ste bombu tj. igra završava .                                                    " << endl;
+                    cout << "              ★ - Otvoreno polje donosi ekstra bodove (5 bodova).                                           " << endl;
+                    getch();
+                }
+                else if (izboPostavki == 0)
+                {
+                    clear_screen();
+                    break;
+                }
+            }
         }
         else if (izbor == 1)
         {
+        playVelicinaPolja:
+            while (1)
+            {
+                int velicinaPolja;
+                clear_screen();
+                cout << endl
+                     << "                                ░█▀▀░█▀▀░▀█▀░▀█▀░▀█▀░█▀█░█▀▀░█▀▀░" << endl;
+                cout << "                                ░▀▀█░█▀▀░░█░░░█░░░█░░█░█░█░█░▀▀█░" << endl;
+                cout << "                                ░▀▀▀░▀▀▀░░▀░░░▀░░▀▀▀░▀░▀░▀▀▀░▀▀▀░" << endl
+                     << endl;
+                cout << "------------------------------------------------------------------------------------------------------------" << endl
+                     << endl;
+                cout << "░█░█░█▀▀░█░░░▀█▀░█▀▀░▀█▀░█▀█░█▀█░░░█▀█░█▀█░█░░░▀▀█░█▀█░░░░" << endl;
+                cout << "░█░█░█▀▀░█░░░░█░░█░░░░█░░█░█░█▀█░░░█▀▀░█░█░█░░░░░█░█▀█░░▀░" << endl;
+                cout << "░░▀░░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀░▀░░░▀░░░▀▀▀░▀▀▀░▀▀░░▀░▀░░▀░ ";
+                cin >> velicinaPolja;
+                velicinaPolja -= 2;
+                if (poljeVelicinaPolja[velicinaPolja] == 0 || velicinaPolja < 0)
+                {
+                    cout << "Niste još kupili ovo polje.";
+                    Sleep(1);
+                    clear_screen();
+                    goto playVelicinaPolja;
+                    n = 3;
+                }
+                else
+                {
+                    n = poljeVelicinaPolja[velicinaPolja];
+                    break;
+                }
+            }
+
             clear_screen();
             int **praznoPolje = new int *[n];
             for (int i = 0; i < n; i++)
@@ -310,7 +338,6 @@ int main()
 
             do
             {
-                cout << "Bomba nije pronađena!" << endl;
                 cout << "Unesite redak:  ";
                 cin >> pogadanjeR;
                 cout << "Unesite stupac: ";
@@ -370,12 +397,12 @@ int main()
                                 ispisPolja(n, praznoPolje);
 
                                 getch();
-                                // sleep(5);
                                 clear_screen();
                                 break;
                             }
                             else
                             {
+                                cout << "Bomba nije pronađena!" << endl;
                                 cout << endl;
                             }
                         }
@@ -455,6 +482,7 @@ int main()
                         Sleep(1);
                         ukupanBrojPogodenih -= 6;
                         clear_screen();
+                        poljeVelicinaPolja[n - 2] = n;
                         break;
                     }
                 }
@@ -472,6 +500,7 @@ int main()
                         Sleep(1);
                         ukupanBrojPogodenih -= 12;
                         clear_screen();
+                        poljeVelicinaPolja[n - 2] = n;
                         break;
                     }
                 }
@@ -489,6 +518,7 @@ int main()
                         Sleep(1);
                         ukupanBrojPogodenih -= 20;
                         clear_screen();
+                        poljeVelicinaPolja[n - 2] = n;
                         break;
                     }
                 }
@@ -525,11 +555,11 @@ int main()
                             cout << "░█░█░█▀▀░█░░░░█░░█░░░░█░░█░█░█▀█░░░█▀▀░█░█░█░░░░░█░█▀█░░▀░" << endl;
                             cout << "░░▀░░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀░▀░░░▀░░░▀▀▀░▀▀▀░▀▀░░▀░▀░░▀░   ";
 
-                            cin >> izborN;
-                            if (izborN > 40)
+                            cin >> velicinaZeljenogPolja;
+                            if (velicinaZeljenogPolja > 40)
                             {
                                 cout << "Kupili ste pre veliko polje!";
-                                izborN = 0;
+                                velicinaZeljenogPolja = 0;
                                 Sleep(1);
                             }
                             else
@@ -537,14 +567,14 @@ int main()
                                 break;
                             }
                         }
-                        if (n == izborN)
+                        if (n == velicinaZeljenogPolja)
                         {
                             cout << "Već ste kupili ovo polje!";
                             Sleep(1);
                             clear_screen();
                         }
 
-                        else if (izborN == 0 || izborN == 1)
+                        else if (velicinaZeljenogPolja == 0 || velicinaZeljenogPolja == 1)
                         {
                             clear_screen();
                             break;
@@ -552,10 +582,11 @@ int main()
 
                         else
                         {
-                            n = izborN;
+                            n = velicinaZeljenogPolja;
                             Sleep(1);
                             ukupanBrojPogodenih -= 50;
                             clear_screen();
+                            poljeVelicinaPolja[n - 2] = n;
                             break;
                         }
                     }
