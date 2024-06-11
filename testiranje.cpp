@@ -14,6 +14,71 @@
 
 using namespace std;
 
+struct Igrac
+{
+    char imeIgraca[50];
+    char password[50];
+    int bodoviIgraca;
+};
+
+void signUp()
+{
+    Igrac newUser;
+
+    cout << endl
+         << "Unesite korisnicko ime: ";
+    cin >> newUser.imeIgraca;
+    cout << "Unesite lozinku: ";
+    cin >> newUser.password;
+    // enkripcija(newUser.password);
+    ofstream outFile("Korisnici.bin", ios::binary | ios::app);
+    if (!outFile)
+    {
+        cerr << "Ne moze se pristupiti datoteci!" << endl;
+        return;
+    }
+
+    outFile.write(reinterpret_cast<char *>(&newUser), sizeof(Igrac));
+    outFile.close();
+
+    cout << "Korisnici racun je uspijesno registriran!" << endl;
+}
+
+bool login(char *imeKorisnik1)
+{
+    Igrac existingUser1;
+    char username1[50];
+    char password1[50];
+login:
+    cout << "1. igrac unesite korisnicko ime: ";
+    cin >> username1;
+    cout << "1. igrac unesite lozinku: ";
+    cin >> password1;
+
+    ifstream inFile("Korisnici.bin", ios::binary);
+    if (!inFile)
+    {
+        cerr << "Ne moze se pristupiti datoteci!" << endl;
+        return false;
+    }
+
+    while (inFile.read(reinterpret_cast<char *>(&existingUser1), sizeof(Igrac)))
+    {
+        if (strcmp(existingUser1.imeIgraca, username1) == 0 && strcmp(existingUser1.password, password1) == 0)
+        {
+            cout << "Uspijesno ste se prijavili!" << endl;
+            strcpy(imeKorisnik1, username1);
+            inFile.close();
+            return true;
+        }
+    }
+
+    inFile.close();
+    cout << "Nije tocno korisnicko ime ili lozinka!" << endl;
+    goto login;
+    return false;
+}
+
 void ispisPolja(int n, int **pPolje)
 {
     cout << "  ";
@@ -57,12 +122,6 @@ void clear_screen()
         "\033[1;1H");
 }
 
-struct Igrac
-{
-    char imeIgraca[50];
-    int bodoviIgraca;
-};
-
 bool cmpp(Igrac &a, Igrac &b)
 {
     return a.bodoviIgraca > b.bodoviIgraca;
@@ -70,47 +129,94 @@ bool cmpp(Igrac &a, Igrac &b)
 
 int main()
 {
-    clear_screen();
     ofstream outDatoteka("", ios::binary | ios::trunc);
     outDatoteka.close();
-    cout << endl
-         << "                            ░█▀█░█▀▄░█▀█░█▀█░█▀█░░█▀▀▄░▀█▀░░░█░░░█▀▄░█▀█░█▄█░█▀▄░█░█░" << endl;
-    cout << "                            ░█▀▀░█▀▄░█░█░█░█░█▀█░▀█▀░█░░█░░░░▀░░░█▀▄░█░█░█░█░█▀▄░█░█░" << endl;
-    cout << "                            ░▀░░░▀░▀░▀▀▀░▀░▀░▀░▀░░▀▀▀░░▀▀▀░░░▀░░░▀▀░░▀▀▀░▀░▀░▀▀░░▀▀▀░" << endl
-         << endl;
-
-    cout << "------------------------------------------------------------------------------------------------------------" << endl;
-
-    cout << endl
-         << "                     ░█░█░█▀▀░█▀▀░█▀▄░░░░" << endl;
-    cout << "                     ░█░█░▀▀█░█▀▀░█▀▄░░▀░" << endl;
-    cout << "                     ░▀▀▀░▀▀▀░▀▀▀░▀░▀░░▀░   ";
-
+    char imeKorisnik[50] = "Igrac1";
     struct Igrac igraci[100];
     int brIgraca = 0;
-    cin.getline(igraci[brIgraca].imeIgraca, 50);
+    // cin.getline(igraci[brIgraca].imeIgraca, 50);
     igraci[brIgraca].imeIgraca;
     ofstream inDatoteka("leaderboard.bin", ios::binary | ios::app | ios::out);
     inDatoteka.write((char *)&igraci[brIgraca], sizeof(Igrac));
     inDatoteka.close();
 
-    clear_screen();
-
     unsigned long long int n{3};
     unsigned long long int velicinaZeljenogPolja{0};
     unsigned long long int izbor;
     unsigned long long int brPogodenihTokomIgre = 0;
-    unsigned long long int ukupanBrojPogodenih = 1000;
+    unsigned long long int ukupanBrojPogodenih = 0;
     unsigned long long int pogadanjeR, pogadanjeC;
     int *poljeVelicinaPolja = new int[40];
     for (int i = 0; i < 40; i++)
         poljeVelicinaPolja[i] = 0;
     poljeVelicinaPolja[1] = 3;
 
+izborSiLi:
+    int izborIgraca;
+    clear_screen();
+    cout << endl
+         << "                            ░█▀█░█▀▄░█▀█░█▀█░█▀█░░█▀▀▄░▀█▀░░░█░░░█▀▄░█▀█░█▄█░█▀▄░█░█░" << endl;
+    cout << "                            ░█▀▀░█▀▄░█░█░█░█░█▀█░▀█▀░█░░█░░░░▀░░░█▀▄░█░█░█░█░█▀▄░█░█░" << endl;
+    cout << "                            ░▀░░░▀░▀░▀▀▀░▀░▀░▀░▀░░▀▀▀░░▀▀▀░░░▀░░░▀▀░░▀▀▀░▀░▀░▀▀░░▀▀▀░" << endl
+         << endl;
+
+    cout << "------------------------------------------------------------------------------------------------------------" << endl
+         << endl;
+    cout << "    ░▀█░░░░  ░█▀▀░▀█▀░█▀▀░█▀█░░▀█▀░█▀█░" << endl;
+    cout << "    ░░█░░░░  ░▀▀█░░█░░█░█░█░█░░░█░░█░█░" << endl;
+    cout << "    ░▀▀▀░▀░  ░▀▀▀░▀▀▀░▀▀▀░▀░▀░░▀▀▀░▀░▀░" << endl
+         << endl;
+    cout << "    ░▀▀▄░░░  ░█░░░█▀█░█▀▀░░░▀█▀░█▀█░" << endl;
+    cout << "    ░▄▀░░░░  ░█░░░█░█░█░█░░░░█░░█░█░" << endl;
+    cout << "    ░▀▀▀░▀░  ░▀▀▀░▀▀▀░▀▀▀░░░▀▀▀░▀░▀░" << endl;
+
+    cin >> izborIgraca;
+    if (izborIgraca == 1)
+    {
+        clear_screen();
+        cout << endl
+             << "                            ░█▀▀░▀█▀░█▀▀░█▀█░░▀█▀░█▀█░" << endl;
+        cout << "                            ░▀▀█░░█░░█░█░█░█░░░█░░█░█░" << endl;
+        cout << "                            ░▀▀▀░▀▀▀░▀▀▀░▀░▀░░▀▀▀░▀░▀░" << endl
+             << endl;
+
+        cout << "------------------------------------------------------------------------------------------------------------" << endl;
+        cout << endl
+             << "     ░█░█░█▀▀░█▀▀░█▀▄░░░▄▀░░░░█▀█░█▀█░█▀▀░█▀▀░█░█░█▀█░█▀▄░█▀▄░░░░" << endl;
+        cout << "     ░█░█░▀▀█░█▀▀░█▀▄░░░▄█▀░░░█▀▀░█▀█░▀▀█░▀▀█░█▄█░█░█░█▀▄░█░█░░▀░" << endl;
+        cout << "     ░▀▀▀░▀▀▀░▀▀▀░▀░▀░░░░▀▀░░░▀░░░▀░▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀░▀░▀▀░░░▀░   ";
+        signUp();
+    }
+
+    else if (izborIgraca == 2)
+    {
+        clear_screen();
+        cout << endl
+             << "                            ░█▀█░█▀▄░█▀█░█▀█░█▀█░░█▀▀▄░▀█▀░░░█░░░█▀▄░█▀█░█▄█░█▀▄░█░█░" << endl;
+        cout << "                            ░█▀▀░█▀▄░█░█░█░█░█▀█░▀█▀░█░░█░░░░▀░░░█▀▄░█░█░█░█░█▀▄░█░█░" << endl;
+        cout << "                            ░▀░░░▀░▀░▀▀▀░▀░▀░▀░▀░░▀▀▀░░▀▀▀░░░▀░░░▀▀░░▀▀▀░▀░▀░▀▀░░▀▀▀░" << endl
+             << endl;
+
+        cout << "------------------------------------------------------------------------------------------------------------" << endl;
+        cout << endl
+             << "     ░█░█░█▀▀░█▀▀░█▀▄░░░▄▀░░░░█▀█░█▀█░█▀▀░█▀▀░█░█░█▀█░█▀▄░█▀▄░░░░" << endl;
+        cout << "     ░█░█░▀▀█░█▀▀░█▀▄░░░▄█▀░░░█▀▀░█▀█░▀▀█░▀▀█░█▄█░█░█░█▀▄░█░█░░▀░" << endl;
+        cout << "     ░▀▀▀░▀▀▀░▀▀▀░▀░▀░░░░▀▀░░░▀░░░▀░▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀░▀░▀▀░░░▀░   " << endl;
+        login(imeKorisnik);
+    }
+    else
+    {
+        cout << "Neispravan unos!";
+        Sleep(1000);
+        clear_screen();
+        goto izborSiLi;
+    }
+
     while (1)
     {
         while (1)
         {
+            clear_screen();
             cout << endl
                  << "                         ░█▀█░█▀▄░█▀█░█▀█░█▀█░░█▀▀▄░▀█▀░░░█░░░█▀▄░█▀█░█▄█░█▀▄░█░█░" << endl;
             cout << "                         ░█▀▀░█▀▄░█░█░█░█░█▀█░▀█▀░█░░█░░░░▀░░░█▀▄░█░█░█░█░█▀▄░█░█░" << endl;
@@ -306,7 +412,7 @@ int main()
 
             srand(time(NULL));
 
-            int brojBombi = round((n * n) / 9.0);
+            int brojBombi = round((n * n) / 7.0);
 
             for (int i = 0; i < brojBombi; i++)
             {
@@ -334,7 +440,7 @@ int main()
 
             cout << endl;
             ispisPolja(n, praznoPolje);
-            //ispisPolja(n, punoPolje);
+            // ispisPolja(n, punoPolje);
 
             do
             {
@@ -402,7 +508,8 @@ int main()
                             }
                             else
                             {
-                                cout << "Bomba nije pronađena!" << endl;
+                                cout << "Bomba nije pronađena!";
+                                cout << endl;
                             }
                         }
                     }
@@ -555,7 +662,7 @@ int main()
                             cout << "░░▀░░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀░▀░░░▀░░░▀▀▀░▀▀▀░▀▀░░▀░▀░░▀░   ";
 
                             cin >> velicinaZeljenogPolja;
-                            if (velicinaZeljenogPolja > 35)
+                            if (velicinaZeljenogPolja > 40)
                             {
                                 cout << "Kupili ste pre veliko polje!";
                                 velicinaZeljenogPolja = 0;
@@ -586,6 +693,7 @@ int main()
                             ukupanBrojPogodenih -= 50;
                             clear_screen();
                             poljeVelicinaPolja[n - 2] = n;
+
                             break;
                         }
                     }
@@ -626,4 +734,3 @@ int main()
     }
     return 0;
 }
-
