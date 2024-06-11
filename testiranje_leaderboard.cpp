@@ -1,5 +1,6 @@
 
 #include <iostream>
+#include <string>
 #include <cmath>
 
 #include <cstdlib>
@@ -87,17 +88,28 @@ int main()
     struct Igrac igraci[100];
     int brIgraca = 0;
     fstream Leaderboard1("leaderboard.bin", ios::binary | ios::in);
-    while (Leaderboard1.read((char *)&igraci[brIgraca], sizeof(Igrac)))
+    if (Leaderboard1.is_open())
     {
-        brIgraca++;
+        while (Leaderboard1.read((char *)&igraci[brIgraca], sizeof(Igrac)))
+        {
+            brIgraca++;
+        }
+        Leaderboard1.close();
     }
-    Leaderboard1.close();
-
+    cout << "Enter player's name: ";
     cin.getline(igraci[brIgraca].imeIgraca, 50);
-    igraci[brIgraca].bodoviIgraca;
-    fstream Leaderboard2("leaderboard.bin", ios::binary | ios::out);
-    Leaderboard2.write((char *)igraci, sizeof(Igrac));
-    Leaderboard2.close();
+    igraci[brIgraca].bodoviIgraca = 0;
+    brIgraca++;
+    fstream Leaderboard2("leaderboard.bin", ios::binary | ios::out | ios::app);
+    if (Leaderboard2.is_open())
+    {
+        Leaderboard2.write((char *)&igraci[brIgraca - 1], sizeof(Igrac));
+        Leaderboard2.close();
+    }
+    else
+    {
+        cerr << "Error opening leaderboard.bin for writing" << endl;
+    }
 
     clear_screen();
 
@@ -116,6 +128,7 @@ int main()
     {
         while (1)
         {
+            clear_screen();
             cout << endl
                  << "                         ░█▀█░█▀▄░█▀█░█▀█░█▀█░░█▀▀▄░▀█▀░░░█░░░█▀▄░█▀█░█▄█░█▀▄░█░█░" << endl;
             cout << "                         ░█▀▀░█▀▄░█░█░█░█░█▀█░▀█▀░█░░█░░░░▀░░░█▀▄░█░█░█░█░█▀▄░█░█░" << endl;
@@ -156,20 +169,21 @@ int main()
                 cout << "------------------------------------------------------------------------------------------------------------" << endl;
 
                 cout << endl
-                     << "    ░▀█░░░░  ░█░░░█▀▀░█▀█░█▀▄░█▀▀░█▀▄░█▀▄░█▀█░█▀█░█▀▄░█▀▄░░░▀█░░" << endl;
-                cout << "    ░░█░░░░  ░█░░░█▀▀░█▀█░█░█░█▀▀░█▀▄░█▀▄░█░█░█▀█░█▀▄░█░█░░░░█░░" << endl;
-                cout << "    ░▀▀▀░▀░  ░▀▀▀░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀░▀░▀▀░░░░▀▀▀░" << endl
+                     << "    ░▀█░░░░  ░█░░░█▀▀░█▀█░█▀▄░█▀▀░█▀▄░█▀▄░█▀█░█▀█░█▀▄░█▀▄░" << endl;
+                cout << "    ░░█░░░░  ░█░░░█▀▀░█▀█░█░█░█▀▀░█▀▄░█▀▄░█░█░█▀█░█▀▄░█░█░" << endl;
+                cout << "    ░▀▀▀░▀░  ░▀▀▀░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀░▀░▀▀░░" << endl
                      << endl;
                 cout << endl
-                     << "    ░▀▀▄░░░  ░█░░░█▀▀░█▀█░█▀▄░█▀▀░█▀▄░█▀▄░█▀█░█▀█░█▀▄░█▀▄░░░▀▀▄░" << endl;
-                cout << "    ░▄▀░░░░  ░█░░░█▀▀░█▀█░█░█░█▀▀░█▀▄░█▀▄░█░█░█▀█░█▀▄░█░█░░░▄▀░░" << endl;
-                cout << "    ░▀▀▀░▀░  ░▀▀▀░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀░▀░▀▀░░░░▀▀▀░" << endl
+                     << "    ░▀▀▄░░░  ░█▀▄░█▀▀░█░█░▀█▀░█▀▀░█░█░" << endl;
+                cout << "    ░▄▀░░░░  ░█▀▄░█▀▀░█░█░░█░░█▀▀░█▄█░" << endl;
+                cout << "    ░▀▀▀░▀░  ░▀░▀░▀▀▀░░▀░░▀▀▀░▀▀▀░▀░▀░" << endl
                      << endl;
                 cout << endl
                      << "    ░▀▀█░░░  ░█▀▄░█░█░█░░░█▀▀░█▀▀░" << endl;
                 cout << "    ░░▀▄░░░  ░█▀▄░█░█░█░░░█▀▀░▀▀█░" << endl;
                 cout << "    ░▀▀▀░▀░  ░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░" << endl
                      << endl;
+
                 cin >> izboPostavki;
                 if (!(izboPostavki != 0 || izboPostavki != 1 || izboPostavki != 2 || izboPostavki != 3))
                 {
@@ -182,28 +196,18 @@ int main()
                 {
                     clear_screen();
                     cout << endl
-                         << "                                ░█░░░█▀▀░█▀█░█▀▄░█▀▀░█▀▄░█▀▄░█▀█░█▀█░█▀▄░█▀▄░░░▀█░░                         " << endl;
-                    cout << "                                ░█░░░█▀▀░█▀█░█░█░█▀▀░█▀▄░█▀▄░█░█░█▀█░█▀▄░█░█░░░░█░░                         " << endl;
-                    cout << "                                ░▀▀▀░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀░▀░▀▀░░░░▀▀▀░                         " << endl
+                         << "                                ░█░░░█▀▀░█▀█░█▀▄░█▀▀░█▀▄░█▀▄░█▀█░█▀█░█▀▄░█▀▄░                         " << endl;
+                    cout << "                                ░█░░░█▀▀░█▀█░█░█░█▀▀░█▀▄░█▀▄░█░█░█▀█░█▀▄░█░█░                         " << endl;
+                    cout << "                                ░▀▀▀░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀░▀░▀▀░░                         " << endl
                          << endl;
                     cout << "------------------------------------------------------------------------------------------------------------" << endl;
 
                     sort(igraci, igraci + brIgraca, cmpp);
-                    fstream Leaderboard1("leaderboard.bin", ios::binary | ios::in);
-                    int brojacDatoteke = 0;
-                    while (Leaderboard1.read((char *)&igraci[brIgraca], sizeof(Igrac)))
-                    {
-                        cout << "                                  " << brojacDatoteke + 1 << ".               ";
-                        cout << igraci[brojacDatoteke].imeIgraca << " " << igraci[brojacDatoteke].bodoviIgraca << endl;
-                        brojacDatoteke++;
-                    }
-                    Leaderboard1.close();
-                    /*for (int i = 0; i < brIgraca; i++)
+                    for (int i = 0; i < brIgraca; i++)
                     {
                         cout << "                                  " << i + 1 << ".               ";
                         cout << igraci[i].imeIgraca << " " << igraci[i].bodoviIgraca << endl;
-                    }*/
-
+                    }
                     getch();
                     clear_screen();
                     /*cout << endl
@@ -218,11 +222,26 @@ int main()
                 {
                     clear_screen();
                     cout << endl
-                         << "                                ░█░░░█▀▀░█▀█░█▀▄░█▀▀░█▀▄░█▀▄░█▀█░█▀█░█▀▄░█▀▄░░░▀▀▄░                         " << endl;
-                    cout << "                                ░█░░░█▀▀░█▀█░█░█░█▀▀░█▀▄░█▀▄░█░█░█▀█░█▀▄░█░█░░░▄▀░░                         " << endl;
-                    cout << "                                ░▀▀▀░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀░▀░▀▀░░░░▀▀▀░                         " << endl
+                         << "                                ░█▀▄░█▀▀░█░█░▀█▀░█▀▀░█░█░                         " << endl;
+                    cout << "                                ░█▀▄░█▀▀░█░█░░█░░█▀▀░█▄█░                         " << endl;
+                    cout << "                                ░▀░▀░▀▀▀░░▀░░▀▀▀░▀▀▀░▀░▀░                         " << endl
                          << endl;
                     cout << "------------------------------------------------------------------------------------------------------------" << endl;
+                    string review_korisnika, ispis_korisnika;
+                    fstream review;
+
+                    cout << endl;
+                    review.open("C://Users//user//Documents//GitHub//GranDeanMaster//review.txt", ios::app);
+                    cin.ignore();
+                    getline(cin, review_korisnika);
+                    review << review_korisnika << endl;
+                    review.close();
+
+                    review.open("C://Users//user//Documents//GitHub//GranDeanMaster//review.txt");
+                    while (getline(review, ispis_korisnika))
+                        cout << ispis_korisnika << endl;
+                    review.close();
+
                     getch();
                 }
                 else if (izboPostavki == 3)
@@ -259,9 +278,9 @@ int main()
                 int velicinaPolja;
                 clear_screen();
                 cout << endl
-                     << "                                ░█▀▀░█▀▀░▀█▀░▀█▀░▀█▀░█▀█░█▀▀░█▀▀░" << endl;
-                cout << "                                ░▀▀█░█▀▀░░█░░░█░░░█░░█░█░█░█░▀▀█░" << endl;
-                cout << "                                ░▀▀▀░▀▀▀░░▀░░░▀░░▀▀▀░▀░▀░▀▀▀░▀▀▀░" << endl
+                     << "                                ░█▀█░█░░░█▀█░█░█░" << endl;
+                cout << "                                ░█▀▀░█░░░█▀█░░█░░" << endl;
+                cout << "                                ░▀░░░▀▀▀░▀░▀░░▀░░" << endl
                      << endl;
                 cout << "------------------------------------------------------------------------------------------------------------" << endl
                      << endl;
@@ -372,9 +391,6 @@ int main()
                             brPogodenihTokomIgre = 0;
 
                             igraci[brIgraca].bodoviIgraca = ukupanBrojPogodenih;
-                            fstream outDatoteka("leaderboard.bin", ios::binary | ios::out);
-                            outDatoteka.write((char *)igraci, sizeof(Igrac));
-                            outDatoteka.close();
                             ispisPolja(n, praznoPolje);
 
                             getch();
@@ -395,9 +411,6 @@ int main()
                                 brPogodenihTokomIgre = 0;
 
                                 igraci[brIgraca].bodoviIgraca = ukupanBrojPogodenih;
-                                fstream outDatoteka("leaderboard.bin", ios::binary | ios::out);
-                                outDatoteka.write((char *)igraci, sizeof(Igrac));
-                                outDatoteka.close();
 
                                 ispisPolja(n, praznoPolje);
 
@@ -600,10 +613,6 @@ int main()
                 else if (izborVpolja == 0)
                 {
                     igraci[brIgraca].bodoviIgraca = ukupanBrojPogodenih;
-                    fstream outDatoteka("leaderboard.bin", ios::binary | ios::out);
-                    outDatoteka.write((char *)igraci, sizeof(Igrac));
-                    outDatoteka.close();
-                    clear_screen();
                     break;
                 }
 
@@ -621,6 +630,16 @@ int main()
         }
         else if (izbor == 0)
         {
+            fstream outDatoteka("leaderboard.bin", ios::binary | ios::out);
+            if (outDatoteka.is_open())
+            {
+                outDatoteka.write((char *)igraci, brIgraca * sizeof(Igrac));
+                outDatoteka.close();
+            }
+            else
+            {
+                cerr << "Error opening leaderboard.bin for writing" << endl;
+            }
             clear_screen();
             cin.ignore();
             break;
