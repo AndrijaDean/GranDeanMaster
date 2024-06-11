@@ -75,9 +75,9 @@ int main()
     ofstream outDatoteka("", ios::binary | ios::trunc);
     outDatoteka.close();
     cout << endl
-         << "                            ░█▀█░█▀▄░█▀█░█▀█░█▀█░░█▀▀▄░▀█▀░░░█░░░█▀▄░█▀█░█▄█░█▀▄░█░█░" << endl;
-    cout << "                            ░█▀▀░█▀▄░█░█░█░█░█▀█░▀█▀░█░░█░░░░▀░░░█▀▄░█░█░█░█░█▀▄░█░█░" << endl;
-    cout << "                            ░▀░░░▀░▀░▀▀▀░▀░▀░▀░▀░░▀▀▀░░▀▀▀░░░▀░░░▀▀░░▀▀▀░▀░▀░▀▀░░▀▀▀░" << endl
+         << "                         ░█▀█░█▀▄░█▀█░█▀█░█▀█░░█▀▀▄░▀█▀░░░█░░░█▀▄░█▀█░█▄█░█▀▄░█░█░" << endl;
+    cout << "                         ░█▀▀░█▀▄░█░█░█░█░█▀█░▀█▀░█░░█░░░░▀░░░█▀▄░█░█░█░█░█▀▄░█░█░" << endl;
+    cout << "                         ░▀░░░▀░▀░▀▀▀░▀░▀░▀░▀░░▀▀▀░░▀▀▀░░░▀░░░▀▀░░▀▀▀░▀░▀░▀▀░░▀▀▀░" << endl
          << endl;
 
     cout << "------------------------------------------------------------------------------------------------------------" << endl;
@@ -229,8 +229,10 @@ int main()
                     cout << "                                ░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░                                                       " << endl
                          << endl;
                     cout << "------------------------------------------------------------------------------------------------------------" << endl;
+                    cout << " IGRANJE:                                                                                                   " << endl;
+                    cout << "                - Za izlazak iz izbornika odaberite broj nula (0).                                          " << endl;
+                    cout << "                - Nakon odabira PLAY odabirede željenu veličinu polja.                                      " << endl;
                     cout << "                - Koordinate se upisuju pomoću brojeva koje se nalaze iznad i s lijeve strane tablice.      " << endl;
-                    cout << "                - Za izlazak iz izbornika odaberite broj nula (0)                                           " << endl;
 
                     cout << " KAZALO OBLIKA:                                                                                             " << endl;
                     cout << "              O - Polje koje još niste otvorili.                                                            " << endl;
