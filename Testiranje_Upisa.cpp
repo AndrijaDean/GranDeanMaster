@@ -1,6 +1,7 @@
-#include <iostream>
+/*#include <iostream>
 #include <fstream>
 #include <cstring>
+#include <conio.h>
 
 using namespace std;
 
@@ -24,36 +25,66 @@ int main()
         }
         Leaderboard1.close();
     }
-    else
-    {
-        cerr << "Error opening leaderboard.bin for reading" << endl;
-    }
+
     cout << "Enter player's name: ";
     cin.getline(igraci[brIgraca].imeIgraca, 50);
+
+    cout << endl
+         << "                                  ░█▀▄░█▀▀░█░█░▀█▀░█▀▀░█░█░                         " << endl;
+    cout << "                                  ░█▀▄░█▀▀░█░█░░█░░█▀▀░█▄█░                         " << endl;
+    cout << "                                  ░▀░▀░▀▀▀░░▀░░▀▀▀░▀▀▀░▀░▀░                         " << endl
+         << endl;
+    cout << "------------------------------------------------------------------------------------------------------------" << endl;
+    string unos_korisnika, ispis_korisnika;
+    fstream review;
+
+    review.open("review.txt", ios::in);
+    while (getline(review, ispis_korisnika))
+    {
+        cout << ispis_korisnika << endl;
+    }
+    review.close();
+
+    cout << "Enter your review: ";
+    review.open("review.txt");
     cin.ignore();
+    getline(cin, unos_korisnika);
+    review << unos_korisnika << endl;
+    review.close();
 
-    int ukupanBrojPogodenih;
-    cout << "Enter the player's score: ";
-    cin >> ukupanBrojPogodenih;
+    getch();
 
-    igraci[brIgraca].bodoviIgraca = ukupanBrojPogodenih;
-    brIgraca++;
-
-    fstream outDatoteka("leaderboard.bin", ios::binary | ios::out);
-    if (outDatoteka.is_open())
+    fstream outDatoteka1("leaderboard.bin", ios::binary | ios::out);
+    if (outDatoteka1.is_open())
     {
-        outDatoteka.write((char *)igraci, brIgraca * sizeof(Igrac));
-        outDatoteka.close();
-    }
-    else
-    {
-        cerr << "Error opening leaderboard.bin for writing" << endl;
-    }
-
-    for (int i = 0; i < brIgraca; i++)
-    {
-        cout << "Player: " << igraci[i].imeIgraca << ", Score: " << igraci[i].bodoviIgraca << endl;
+        outDatoteka1.write((char *)igraci, brIgraca * sizeof(Igrac));
+        outDatoteka1.close();
     }
 
     return 0;
+}*/
+// basic file operations
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main()
+{
+    string unos_korisnika, ispis_korisnika;
+    fstream review;
+
+    review.open("review.txt", ios::in);
+    while (getline(review, ispis_korisnika))
+    {
+        cout << ispis_korisnika << endl;
+    }
+    review.close();
+    // Create and open a text file
+    ofstream MyFile("review.txt", ios::app | ios::out);
+
+    // Write to the file
+    MyFile << "Files can be tricky, but it is fun enough!";
+
+    // Close the file
+    MyFile.close();
 }

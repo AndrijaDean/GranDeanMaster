@@ -133,20 +133,13 @@ int main()
         }
         Leaderboard1.close();
     }
-    cout << "Enter player's name: ";
+
     cin.getline(igraci[brIgraca].imeIgraca, 50);
+
     igraci[brIgraca].bodoviIgraca = 0;
+    // igraci[brIgraca].bodoviIgraca = 1;
+    // igraci[brIgraca].bodoviIgraca = 2;
     brIgraca++;
-    fstream Leaderboard2("leaderboard.bin", ios::binary | ios::out | ios::app);
-    if (Leaderboard2.is_open())
-    {
-        Leaderboard2.write((char *)&igraci[brIgraca - 1], sizeof(Igrac));
-        Leaderboard2.close();
-    }
-    else
-    {
-        cerr << "Error opening leaderboard.bin for writing" << endl;
-    }
 
     clear_screen();
 
@@ -155,7 +148,7 @@ int main()
     unsigned long long int izborVpolja;
     unsigned long long int izbor;
     unsigned long long int brPogodenihTokomIgre = 0;
-    unsigned long long int ukupanBrojPogodenih = 46;
+    unsigned long long int ukupanBrojPogodenih = 0;
     unsigned long long int pogadanjeR, pogadanjeC;
     int *poljeVelicinaPolja = new int[40];
     for (int i = 0; i < 40; i++)
@@ -178,8 +171,11 @@ int main()
             cout << endl
                  << "  ░█▀█░█░░░█▀█░█░█░         |        ░█▀▀░█▀▀░▀█▀░▀█▀░▀█▀░█▀█░█▀▀░█▀▀░         |         ░█▀▀░█░█░█▀█░█▀█░" << endl;
             cout << "  ░█▀▀░█░░░█▀█░░█░░         |        ░▀▀█░█▀▀░░█░░░█░░░█░░█░█░█░█░▀▀█░         |         ░▀▀█░█▀█░█░█░█▀▀░" << endl;
-            cout << "  ░▀░░░▀▀▀░▀░▀░░▀░░         |        ░▀▀▀░▀▀▀░░▀░░░▀░░▀▀▀░▀░▀░▀▀▀░▀▀▀░         |         ░▀▀▀░▀░▀░▀▀▀░▀░░░" << endl;
-
+            cout << "  ░▀░░░▀▀▀░▀░▀░░▀░░         |        ░▀▀▀░▀▀▀░░▀░░░▀░░▀▀▀░▀░▀░▀▀▀░▀▀▀░         |         ░▀▀▀░▀░▀░▀▀▀░▀░░░" << endl
+                 << endl;
+            cout << "                                 ░█▀▀░█▀█░█░█░█▀▀░░░▄▀░░░░▄▀▄░█░█░▀█▀░▀█▀░" << endl;
+            cout << "                                 ░▀▀█░█▀█░█░█░█▀▀░░░▄█▀░░░█░█░█░█░░█░░░█░░" << endl;
+            cout << "                                 ░▀▀▀░▀░▀░░▀░░▀▀▀░░░░▀▀░░░░▀▀░▀▀▀░▀▀▀░░▀░░" << endl;
             cin >> izbor;
             if (izbor == 0 || izbor == 1 || izbor == 2 || izbor == 3)
             {
@@ -265,19 +261,21 @@ int main()
                     cout << "                                  ░▀░▀░▀▀▀░░▀░░▀▀▀░▀▀▀░▀░▀░                         " << endl
                          << endl;
                     cout << "------------------------------------------------------------------------------------------------------------" << endl;
-                    string review_korisnika, ispis_korisnika;
+                    string unos_korisnika, ispis_korisnika;
                     fstream review;
 
-                    cout << endl;
-                    review.open("C://Users//user//Documents//GitHub//GranDeanMaster//review.txt", ios::app);
-                    cin.ignore();
-                    getline(cin, review_korisnika);
-                    review << review_korisnika << endl;
+                    review.open("review.txt", ios::in);
+                    while (getline(review, ispis_korisnika))
+                    {
+                        cout << ispis_korisnika << endl;
+                    }
                     review.close();
 
-                    review.open("C://Users//user//Documents//GitHub//GranDeanMaster//review.txt");
-                    while (getline(review, ispis_korisnika))
-                        cout << ispis_korisnika << endl;
+                    cout << "Unesite svoj review: ";
+                    review.open("review.txt");
+                    cin.ignore();
+                    getline(cin, unos_korisnika);
+                    review << igraci[brIgraca].imeIgraca << unos_korisnika << endl;
                     review.close();
 
                     getch();
@@ -422,6 +420,8 @@ int main()
                                 cout << "Dobili ste maksimalan broj bodova! :)" << " " << brPogodenihTokomIgre << endl;
                                 ukupanBrojPogodenih += brPogodenihTokomIgre;
                                 brPogodenihTokomIgre = 0;
+
+                                igraci[brIgraca - 1].bodoviIgraca = ukupanBrojPogodenih;
                                 ispisPolja(n, praznoPolje);
                                 getch();
                                 clear_screen();
@@ -442,9 +442,8 @@ int main()
                             ukupanBrojPogodenih += brPogodenihTokomIgre;
                             brPogodenihTokomIgre = 0;
 
-                            igraci[brIgraca].bodoviIgraca = ukupanBrojPogodenih;
+                            igraci[brIgraca - 1].bodoviIgraca = ukupanBrojPogodenih;
                             ispisPolja(n, praznoPolje);
-
                             getch();
                             clear_screen();
                             break;
@@ -460,6 +459,9 @@ int main()
                                 cout << "Dobili ste maksimalan broj bodova! :)" << " " << brPogodenihTokomIgre << endl;
                                 ukupanBrojPogodenih += brPogodenihTokomIgre;
                                 brPogodenihTokomIgre = 0;
+
+                                igraci[brIgraca - 1].bodoviIgraca = ukupanBrojPogodenih;
+
                                 ispisPolja(n, praznoPolje);
                                 getch();
                                 clear_screen();
@@ -533,22 +535,24 @@ int main()
                         n = 4;
                         poljeVelicinaPolja[izborVpolja - 2] = izborVpolja;
                         ukupanBrojPogodenih -= 6;
+                        igraci[brIgraca - 1].bodoviIgraca = ukupanBrojPogodenih;
                     }
                     else if (izborVpolja == 5 && ukupanBrojPogodenih >= 12)
                     {
                         n = 5;
                         poljeVelicinaPolja[izborVpolja - 2] = izborVpolja;
                         ukupanBrojPogodenih -= 12;
+                        igraci[brIgraca - 1].bodoviIgraca = ukupanBrojPogodenih;
                     }
                     else if (izborVpolja == 6 && ukupanBrojPogodenih >= 20)
                     {
                         n = 6;
                         poljeVelicinaPolja[izborVpolja - 2] = izborVpolja;
                         ukupanBrojPogodenih -= 20;
+                        igraci[brIgraca - 1].bodoviIgraca = ukupanBrojPogodenih;
                     }
                     else if (izborVpolja == 3)
                     {
-                        igraci[brIgraca].bodoviIgraca = ukupanBrojPogodenih; // dodati fstream
                         break;
                     }
                     else if (izborVpolja == 7 && ukupanBrojPogodenih >= 50)
@@ -594,6 +598,8 @@ int main()
                                 n = velicinaZeljenogPolja;
                                 Sleep(1000);
                                 ukupanBrojPogodenih -= 50;
+                                igraci[brIgraca - 1].bodoviIgraca = ukupanBrojPogodenih;
+
                                 clear_screen();
                                 poljeVelicinaPolja[velicinaZeljenogPolja - 2] = velicinaZeljenogPolja;
                                 break;
@@ -604,6 +610,7 @@ int main()
                     {
                         clear_screen();
                     }
+
                     Sleep(1000);
                     clear_screen();
                     break;
@@ -612,16 +619,22 @@ int main()
         }
         else if (izbor == 0)
         {
-            fstream outDatoteka("leaderboard.bin", ios::binary | ios::out);
-            if (outDatoteka.is_open())
+            cout << "                                 ░█▀▀░█▀█░█░█░█▀▀░░░▄▀░░░░▄▀▄░█░█░▀█▀░▀█▀░" << endl;
+            cout << "                                 ░▀▀█░█▀█░█░█░█▀▀░░░▄█▀░░░█░█░█░█░░█░░░█░░" << endl;
+            cout << "                                 ░▀▀▀░▀░▀░░▀░░▀▀▀░░░░▀▀░░░░▀▀░▀▀▀░▀▀▀░░▀░░" << endl
+                 << endl;
+            cout << "------------------------------------------------------------------------------------------------------------" << endl;
+            fstream Leaderboard2("leaderboard.bin", ios::binary | ios::out | ios::app);
+            if (Leaderboard2.is_open())
             {
-                outDatoteka.write((char *)igraci, brIgraca * sizeof(Igrac));
-                outDatoteka.close();
+                Leaderboard2.write((char *)&igraci[brIgraca - 1], sizeof(Igrac));
+                Leaderboard2.close();
             }
-            else
-            {
-                cerr << "Error opening leaderboard.bin for writing" << endl;
-            }
+            /*Leaderboard2.read((char *)&igraci[brIgraca - 1], sizeof(Igrac));
+            ukupanBrojPogodenih -= 6;
+            Leaderboard2.write((char *)&igraci[brIgraca - 1], sizeof(Igrac));
+            Leaderboard2.close();
+            Leaderboard2.write((char *)&igraci[brIgraca - 1], sizeof(Igrac));*/
             clear_screen();
             cin.ignore();
             break;
